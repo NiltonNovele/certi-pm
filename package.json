@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.35.5",
     "@react-google-maps/api": "^2.20.7",
     "@react-oauth/google": "^0.12.2",
     "appwrite": "^20.1.0",
-    "axios": "^1.12.2",
+    "axios": "^1.13.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "docx": "^9.5.1",
