@@ -40,7 +40,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
             <ul className="space-y-3 text-gray-700 dark:text-gray-400 text-sm">
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-[#8b0d0d]" />
-                <span>info@projectdirect.com</span>
+                <span>info@certipm.com</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-[#8b0d0d]" />

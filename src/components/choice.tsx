@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignIn, useUser  } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 
 interface QuizChoice {
@@ -56,33 +56,37 @@ const Choose: React.FC = () => {
   const [promoError, setPromoError] = useState("");
 
   const handlePracticeNow = async (quiz: QuizChoice) => {
-    if (quiz.comingSoon) return;
+  if (quiz.comingSoon) return;
 
-    setLoading(quiz.id);
-    try {
-      const user_id = "USER_ID_HERE"; // replace with actual user id
+  setLoading(quiz.id);
+  try {
+    const user_id = "USER_ID_HERE"; // Replace with real Clerk ID
 
-      const response = await axios.post(
-        "https://api.certipm.com/api/create-payment",
-        {
-          amount: 1,
-          description: `${quiz.title} Practice Quiz`,
-          user_id,
-        }
-      );
-
-      if (response.data.checkout_url) {
-        window.location.href = response.data.checkout_url;
-      } else {
-        alert("Failed to generate payment link. Please try again.");
+    const response = await axios.post(
+      "https://api.certipm.com/api/create-payment",
+      {
+        amount: 1,
+        description: `${quiz.title} Practice Quiz`,
+        user_id,
       }
-    } catch (error) {
-      console.error("Payment error:", error);
-      alert("Payment initiation failed. Check console for details.");
-    } finally {
-      setLoading(null);
+    );
+
+    if (response.data.checkout_url) {
+      // ✅ Store desired redirect
+      localStorage.setItem("postPaymentRedirect", quiz.redirectUrl);
+
+      // ✅ Redirect to Riha
+      window.location.href = response.data.checkout_url;
+    } else {
+      alert("Failed to generate payment link. Please try again.");
     }
-  };
+  } catch (error) {
+    console.error("Payment error:", error);
+    alert("Payment initiation failed.");
+  } finally {
+    setLoading(null);
+  }
+};
 
   const handleApplyPromo = () => {
     if (promoCode.trim() === VALID_PROMO_CODE) {

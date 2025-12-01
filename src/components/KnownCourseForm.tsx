@@ -12,6 +12,10 @@ interface Question {
   explanation: string;
 }
 
+// CONFIG
+const QUIZ_TIME_MINUTES = 230;
+const QUIZ_TIME_SECONDS = QUIZ_TIME_MINUTES * 60;
+
 const stepSize = 5;
 const totalSteps = Math.ceil(quizQuestions.length / stepSize);
 const steps = Array.from(
@@ -27,9 +31,31 @@ const ProjectQuiz: React.FC = () => {
   const [step, setStep] = useState(1);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>(Array(quizQuestions.length).fill(""));
-  const [submitted, setSubmitted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // TIMER
+  const [timeLeft, setTimeLeft] = useState(QUIZ_TIME_SECONDS);
+
   const navigate = useNavigate();
+
+  // Start timer when quiz loads
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+
+          // Auto-submit when time ends
+          navigate("/results", { state: { userAnswers: answers } });
+
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [navigate, answers]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -44,16 +70,20 @@ const ProjectQuiz: React.FC = () => {
   const nextQuestion = () => {
     if (currentQuestionIndex < quizQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
-      if ((currentQuestionIndex + 1) % stepSize === 0) setStep((prev) => prev + 1);
-      setSubmitted(false);
+
+      if ((currentQuestionIndex + 1) % stepSize === 0) {
+        setStep((prev) => prev + 1);
+      }
     }
   };
 
   const prevQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
-      if (currentQuestionIndex % stepSize === 0) setStep((prev) => prev - 1);
-      setSubmitted(false);
+
+      if (currentQuestionIndex % stepSize === 0) {
+        setStep((prev) => prev - 1);
+      }
     }
   };
 
@@ -65,22 +95,41 @@ const ProjectQuiz: React.FC = () => {
   const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
   const q = quizQuestions[currentQuestionIndex];
 
+  // Format time
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+
+    return `${h.toString().padStart(2, "0")}:${m
+      .toString()
+      .padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
+
   return (
     <SignedIn>
       <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto relative">
-          {/* Header */}
+
+          {/* HEADER */}
           <div className="text-center mb-10">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white shadow-lg mb-4">
               <CheckCircle2 className="w-8 h-8 text-red-700" />
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">Project Management Quiz</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Project Management Quiz
+            </h1>
             <p className="mt-2 text-gray-700 max-w-2xl mx-auto">
-              One question per screen. Explanations will appear only after submission.
+              One question per screen. The quiz is timed.
             </p>
+
+            {/* TIMER DISPLAY */}
+            <div className="mt-4 text-xl font-bold text-red-700">
+              Time Remaining: {formatTime(timeLeft)}
+            </div>
           </div>
 
-          {/* Info Modal */}
+          {/* INFO MODAL BUTTON */}
           <button
             className="absolute top-4 right-4 p-3 bg-red-700 text-white rounded-full shadow-lg hover:bg-red-800 transition-colors"
             onClick={() => setIsModalOpen(true)}
@@ -88,6 +137,7 @@ const ProjectQuiz: React.FC = () => {
             <Info className="w-5 h-5" />
           </button>
 
+          {/* INFO MODAL */}
           {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 px-4">
               <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full relative">
@@ -97,19 +147,23 @@ const ProjectQuiz: React.FC = () => {
                 >
                   ×
                 </button>
-                <h3 className="font-semibold text-xl mb-2 text-center">Quiz Responsible</h3>
+                <h3 className="font-semibold text-xl mb-2 text-center">
+                  Quiz Responsible
+                </h3>
                 <img
                   src="/patricio.jpg"
                   alt="Responsible person"
                   className="w-32 h-32 rounded-full mx-auto mb-4"
                 />
                 <p className="text-center text-lg">Patricio Inacio</p>
-                <p className="text-center text-sm text-gray-600">Email: patricio.inacio@certipm.com</p>
+                <p className="text-center text-sm text-gray-600">
+                  Email: patricio.inacio@certipm.com
+                </p>
               </div>
             </div>
           )}
 
-          {/* Progress bar */}
+          {/* PROGRESS BAR */}
           <div className="relative mb-8">
             <div className="h-2 bg-gray-300 rounded-full">
               <div
@@ -121,7 +175,11 @@ const ProjectQuiz: React.FC = () => {
               {steps.map((label, index) => (
                 <span
                   key={index}
-                  className={`${index + 1 <= step ? "text-red-700 font-semibold" : "text-gray-400"}`}
+                  className={
+                    index + 1 <= step
+                      ? "text-red-700 font-semibold"
+                      : "text-gray-400"
+                  }
                 >
                   {label}
                 </span>
@@ -129,39 +187,45 @@ const ProjectQuiz: React.FC = () => {
             </div>
           </div>
 
+          {/* QUIZ FORM */}
           <form
             onSubmit={handleSubmit}
             className="bg-white border border-red-700 shadow-xl rounded-2xl p-6 sm:p-10 space-y-8"
           >
             <div className="space-y-2">
-              <p className="font-medium text-gray-800 italic mb-1">Scenario: {q.scenario}</p>
+              <p className="font-medium text-gray-800 italic mb-1">
+                Scenario: {q.scenario}
+              </p>
+
               <p className="font-semibold text-gray-900">
                 Q{currentQuestionIndex + 1}: {q.question}
               </p>
+
               <div className="flex flex-col gap-2 mt-1">
                 {q.options.map((option, idx) => (
-                  <label key={idx} className="flex items-center gap-2 cursor-pointer text-gray-800">
+                  <label
+                    key={idx}
+                    className="flex items-center gap-2 cursor-pointer text-gray-800"
+                  >
                     <input
                       type="radio"
                       name={`q${currentQuestionIndex}`}
                       value={option}
                       checked={answers[currentQuestionIndex] === option}
-                      onChange={() => handleAnswerChange(currentQuestionIndex, option)}
+                      onChange={() =>
+                        handleAnswerChange(currentQuestionIndex, option)
+                      }
                       className="accent-red-700 focus:ring-red-700"
                     />
-                    <span>{String.fromCharCode(65 + idx)}. {option}</span>
+                    <span>
+                      {String.fromCharCode(65 + idx)}. {option}
+                    </span>
                   </label>
                 ))}
               </div>
-
-              {submitted && (
-                <div className="mt-2 p-3 bg-gray-100 border-l-4 border-red-700 rounded">
-                  <p className="font-semibold text-red-700">Explanation:</p>
-                  <p className="text-gray-700 text-sm">{q.explanation}</p>
-                </div>
-              )}
             </div>
 
+            {/* NAVIGATION */}
             <div className="flex flex-col sm:flex-row justify-between mt-6 gap-2 sm:gap-0">
               <button
                 type="button"
@@ -193,10 +257,12 @@ const ProjectQuiz: React.FC = () => {
         </div>
       </div>
 
-      {/* Signed out */}
+      {/* SIGNED OUT */}
       <SignedOut>
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">You must sign in to access the quiz</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            You must sign in to access the quiz
+          </h2>
           <SignIn path="/projectQuiz" routing="path" />
         </div>
       </SignedOut>
