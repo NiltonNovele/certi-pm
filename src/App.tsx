@@ -39,7 +39,7 @@ function AppRoutes() {
         path="/projectQuiz"
         element={
           <SignedOut>
-            <Navigate to="/projectQuiz" replace />
+            <ProjectQuiz />
           </SignedOut>
         }
       />

@@ -36,8 +36,8 @@ app.post("/api/create-payment", async (req, res) => {
         amount: 1,
         currency: "MT",
         description,
-        redirect_url: process.env.REDIRECT_URL || "https://certi-pm.vercel.app/projectQuiz",
-        webhook_url: process.env.WEBHOOK_URL || "https://certi-pm.vercel.app/api/webhook",
+        redirect_url: process.env.REDIRECT_URL || "https://certipm.com/projectQuiz",
+        webhook_url: process.env.WEBHOOK_URL || "https://api.certipm.com/api/webhook",
         metadata: { user_id, plan: "premium" },
         escrow_enabled: false 
       },
