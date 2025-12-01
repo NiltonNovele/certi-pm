@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CheckCircle2, Info } from "lucide-react";
 import quizQuestions from "../data/quizQuestions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
 
 interface Question {
@@ -32,22 +32,29 @@ const ProjectQuiz: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>(Array(quizQuestions.length).fill(""));
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Handle payment redirect query params
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get("status") === "success" && params.get("payment_id")) {
+      setPaymentSuccess(true); // optional: show success message
+      navigate("/projectQuiz", { replace: true });
+    }
+  }, [location, navigate]);
 
   // TIMER
   const [timeLeft, setTimeLeft] = useState(QUIZ_TIME_SECONDS);
 
-  const navigate = useNavigate();
-
-  // Start timer when quiz loads
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-
-          // Auto-submit when time ends
           navigate("/results", { state: { userAnswers: answers } });
-
           return 0;
         }
         return prev - 1;
@@ -70,20 +77,14 @@ const ProjectQuiz: React.FC = () => {
   const nextQuestion = () => {
     if (currentQuestionIndex < quizQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
-
-      if ((currentQuestionIndex + 1) % stepSize === 0) {
-        setStep((prev) => prev + 1);
-      }
+      if ((currentQuestionIndex + 1) % stepSize === 0) setStep((prev) => prev + 1);
     }
   };
 
   const prevQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
-
-      if (currentQuestionIndex % stepSize === 0) {
-        setStep((prev) => prev - 1);
-      }
+      if (currentQuestionIndex % stepSize === 0) setStep((prev) => prev - 1);
     }
   };
 
@@ -95,12 +96,10 @@ const ProjectQuiz: React.FC = () => {
   const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
   const q = quizQuestions[currentQuestionIndex];
 
-  // Format time
   const formatTime = (seconds: number) => {
     const h = Math.floor(seconds / 3600);
     const m = Math.floor((seconds % 3600) / 60);
     const s = seconds % 60;
-
     return `${h.toString().padStart(2, "0")}:${m
       .toString()
       .padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
@@ -110,6 +109,13 @@ const ProjectQuiz: React.FC = () => {
     <SignedIn>
       <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto relative">
+          
+          {/* Payment success alert */}
+          {paymentSuccess && (
+            <div className="mb-4 p-4 bg-green-100 text-green-800 rounded-lg text-center font-semibold">
+              Payment successful! You can now start the quiz.
+            </div>
+          )}
 
           {/* HEADER */}
           <div className="text-center mb-10">
@@ -122,8 +128,6 @@ const ProjectQuiz: React.FC = () => {
             <p className="mt-2 text-gray-700 max-w-2xl mx-auto">
               One question per screen. The quiz is timed.
             </p>
-
-            {/* TIMER DISPLAY */}
             <div className="mt-4 text-xl font-bold text-red-700">
               Time Remaining: {formatTime(timeLeft)}
             </div>
@@ -196,11 +200,9 @@ const ProjectQuiz: React.FC = () => {
               <p className="font-medium text-gray-800 italic mb-1">
                 Scenario: {q.scenario}
               </p>
-
               <p className="font-semibold text-gray-900">
                 Q{currentQuestionIndex + 1}: {q.question}
               </p>
-
               <div className="flex flex-col gap-2 mt-1">
                 {q.options.map((option, idx) => (
                   <label
@@ -235,7 +237,6 @@ const ProjectQuiz: React.FC = () => {
               >
                 Previous
               </button>
-
               {currentQuestionIndex === quizQuestions.length - 1 ? (
                 <button
                   type="submit"

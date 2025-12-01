@@ -16,43 +16,27 @@ import PaymentSuccess from "./components/PaymentSuccess";
 import QuizResults from "./components/QuizResults";
 import Choose from "./components/choice";
 
+
 const token = localStorage.getItem("authToken");
 if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contact" element={<Enquiry />} />
-      <Route path="/terms" element={<Terms />} />
+  <Route path="/" element={<Home />} />
+  <Route path="/contact" element={<Enquiry />} />
+  <Route path="/terms" element={<Terms />} />
 
-      {/* Project Quiz route protected */}
-      <Route
-        path="/projectQuiz"
-        element={
-          <SignedIn>
-            <ProjectQuiz />
-          </SignedIn>
-        }
-      />
-      <Route
-        path="/projectQuiz"
-        element={
-          <SignedOut>
-            <ProjectQuiz />
-          </SignedOut>
-        }
-      />
 
-      {/* Choice page */}
-      <Route path="/choice" element={<Choose />} />
+  {/* Project Quiz */}
+  <Route path="/projectQuiz" element={<ProjectQuiz />} />
 
-      <Route path="/payment-success" element={<PaymentSuccess />} />
-      <Route path="/results" element={<QuizResults />} />
+  <Route path="/choice" element={<Choose />} />
+  <Route path="/payment-success" element={<PaymentSuccess />} />
+  <Route path="/results" element={<QuizResults />} />
 
-      {/* Fallback */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+  <Route path="*" element={<NotFound />} />
+</Routes>
   );
 }
 
