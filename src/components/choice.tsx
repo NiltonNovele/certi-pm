@@ -47,7 +47,7 @@ const quizzes: QuizChoice[] = [
   },
 ];
 
-const VALID_PROMO_CODE = "CRTIPM01SYNCTECHX";
+const VALID_PROMO_CODE = "CERTIPM01SYNCTECHX";
 
 const Choose: React.FC = () => {
   const navigate = useNavigate();
@@ -63,9 +63,9 @@ const Choose: React.FC = () => {
       const user_id = "USER_ID_HERE"; // replace with actual user id
 
       const response = await axios.post(
-        "http://localhost:5000/api/create-payment",
+        "https://api.certipm.com/api/create-payment",
         {
-          amount: quiz.price,
+          amount: 1,
           description: `${quiz.title} Practice Quiz`,
           user_id,
         }

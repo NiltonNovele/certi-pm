@@ -7,9 +7,18 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5006;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://certi-pm.vercel.app",
+    "https://www.certipm.com",
+    "https://certipm.com"
+  ],
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use(express.json());
 
 // Endpoint to create payment link
@@ -25,12 +34,12 @@ app.post("/api/create-payment", async (req, res) => {
       "https://api.riha.co.mz/payment-links",
       {
         amount: 1,
-        currency: "MT", // default currency
+        currency: "MT",
         description,
-        redirect_url: process.env.REDIRECT_URL || "http://localhost:3000/projectQuiz",
-        webhook_url: process.env.WEBHOOK_URL || "http://localhost:5000/api/webhook",
+        redirect_url: process.env.REDIRECT_URL || "https://certi-pm.vercel.app/projectQuiz",
+        webhook_url: process.env.WEBHOOK_URL || "https://certi-pm.vercel.app/api/webhook",
         metadata: { user_id, plan: "premium" },
-        escrow_enabled: false // disable escrow
+        escrow_enabled: false 
       },
       {
         headers: {
