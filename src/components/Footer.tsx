@@ -87,10 +87,10 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
 
         <div className="mt-10 pt-6 border-t border-gray-300 dark:border-gray-700 text-center">
           <p className="text-xs text-gray-600 dark:text-gray-400">
-            © {new Date().getFullYear()} Project Direct Lda. Todos os direitos reservados.
+            © {new Date().getFullYear()} Project Direct Lda. All rights reserved.
           </p>
           <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-            Desenvolvido pela <a href="https://www.synctechx.com" target="_blank" className="font-semibold text-[#8b0d0d] hover:underline">SyncTechX</a>
+            Developed by <a href="https://www.synctechx.com" target="_blank" className="font-semibold text-[#8b0d0d] hover:underline">SyncTechX</a>
           </p>
         </div>
       </div>

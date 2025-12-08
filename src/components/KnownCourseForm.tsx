@@ -123,10 +123,10 @@ const ProjectQuiz: React.FC = () => {
               <CheckCircle2 className="w-8 h-8 text-red-700" />
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
-              Project Management Quiz
+              PMP Practice Quiz
             </h1>
             <p className="mt-2 text-gray-700 max-w-2xl mx-auto">
-              One question per screen. The quiz is timed.
+              Read each question carefully and select the most appropriate answer.
             </p>
             <div className="mt-4 text-xl font-bold text-red-700">
               Time Remaining: {formatTime(timeLeft)}

@@ -60,7 +60,7 @@ const Navigation = () => {
                   className="px-4 py-2 rounded-lg bg-[#6c47ff] text-white text-sm font-medium flex items-center gap-1"
                 >
                   <LogIn className="w-4 h-4" />
-                  Entrar / Cadastrar
+                  Sign in / Sign up
                 </button>
               </SignedOut>
 
@@ -105,7 +105,7 @@ const Navigation = () => {
                     onClick={() => setIsModalOpen(true)}
                     className="w-full px-4 py-2 rounded-lg bg-[#6c47ff] text-white text-sm font-medium flex justify-center items-center gap-1"
                   >
-                    <LogIn className="w-4 h-4" /> Sign-in / Sign-up
+                    <LogIn className="w-4 h-4" /> Sign in / Sign up
                   </button>
                 </SignedOut>
                 <SignedIn>
