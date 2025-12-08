@@ -8,9 +8,9 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
   const quickLinks = [
-    { id: "Home" as NavigationPage, label: "Início" },
-    { id: "Discovery" as NavigationPage, label: "Explorar" },
-    { id: "Contacto" as NavigationPage, label: "Contacto" },
+    { id: "Home" as NavigationPage, label: "Home" },
+    { id: "Discovery" as NavigationPage, label: "Practice" },
+    { id: "Contacto" as NavigationPage, label: "Contact" },
   ];
 
   return (

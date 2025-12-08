@@ -29,9 +29,9 @@ const Navigation = () => {
               <BadgeCheck className="w-9 h-9 text-white" />
               <div>
                 <span className="text-2xl font-extrabold text-white tracking-wide uppercase">
-                  Certi PM
+                  CertiPM
                 </span>
-                <div className="text-xs text-red-200 font-medium uppercase tracking-widest">
+                <div className="text-xs text-red-200 font-medium tracking-widest">
                   By Project Direct Lda.
                 </div>
               </div>
