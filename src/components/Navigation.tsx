@@ -6,15 +6,16 @@ import {
   UserButton,
   SignIn,
 } from "@clerk/clerk-react";
-import { Home, Brain, Contact, Menu, X, BadgeCheck, LogIn } from "lucide-react";
+import { Home, Brain, Contact, Menu, X, BadgeCheck, LogIn, BookOpenText } from "lucide-react";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // for Clerk modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
     { path: "/", label: "Home", icon: Home },
+    { path: "/courses", label: "Courses", icon: BookOpenText },
     { path: "/choice", label: "Practice", icon: Brain },
     { path: "/contact", label: "Contact", icon: Contact },
   ];

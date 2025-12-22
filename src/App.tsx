@@ -19,6 +19,7 @@ import AdminDashboard from "./components/admin";
 import QuizRunner from "./components/QuizRunner";
 import QuizReview from "./components/QuizReview";
 import SCRUMQuiz from "./components/scrum";
+import Courses from "./components/courses";
 
 
 const token = localStorage.getItem("authToken");
@@ -39,6 +40,7 @@ function AppRoutes() {
   <Route path="/scrum" element={<SCRUMQuiz />} />
 
   <Route path="/choice" element={<Choose />} />
+  <Route path="/courses" element={<Courses />} />
   <Route path="/payment-success" element={<PaymentSuccess />} />
   <Route path="/results" element={<QuizReview />} />
 
