@@ -78,7 +78,7 @@ const Home = () => {
         About Certi PM
       </h2>
       <p className="leading-relaxed text-gray-700">
-        Certi PM is a specialised institution focused on training and certification in project management. Our mission is to prepare professionals to lead projects effectively by applying global best practices.
+        Certi PM is a specialised platform, that belongs to Project Direct Lda., which is an institution focused on training and certification in project management. Our mission is to prepare professionals to lead projects effectively by applying global best practices.
       </p>
       <p className="leading-relaxed text-gray-700">
         We offer courses, workshops and support for preparation towards internationally recognised certifications.

@@ -22,8 +22,8 @@ const quizzes: QuizChoice[] = [
     description: "Prepare for the Project Management Professional (PMP) exam.",
     instructor: "Patricio Inacio",
     price: 999,
-    originalPrice: 1399,
-    redirectUrl: "/projectQuiz",
+    originalPrice: 1899,
+    redirectUrl: "/pmp",
     promotion: "Black November",
   },
   {
@@ -32,18 +32,20 @@ const quizzes: QuizChoice[] = [
     description:
       "Certified Associate in Project Management (CAPM) practice questions.",
     instructor: "Patricio Inacio",
-    price: 2000,
-    redirectUrl: "",
-    comingSoon: true,
+    price: 799,
+    originalPrice: 1699,
+    redirectUrl: "/capm",
+    promotion: "Black November",
   },
   {
     id: "scrum",
     title: "Scrum Master Quiz",
     description: "Agile Scrum Master certification practice questions.",
     instructor: "Patricio Inacio",
-    price: 1649,
-    redirectUrl: "",
-    comingSoon: true,
+    price: 599,
+    originalPrice: 1499,
+    redirectUrl: "/scrum",
+    promotion: "Black November",
   },
 ];
 
@@ -63,11 +65,12 @@ const Choose: React.FC = () => {
     const user_id = "USER_ID_HERE"; // Replace with real Clerk ID
 
     const response = await axios.post(
-      "https://api.certipm.com/api/create-payment",
+      "https://api.certipm.com/api/create-payment", //"https://api.certipm.com/api/create-payment",
       {
-        amount: 1,
+        amount: quiz.price,
         description: `${quiz.title} Practice Quiz`,
         user_id,
+        redirect_url: `${window.location.origin}${quiz.redirectUrl}`,
       }
     );
 

@@ -24,7 +24,7 @@ app.use(express.json());
 // Endpoint to create payment link
 app.post("/api/create-payment", async (req, res) => {
   try {
-    const { amount, description, user_id } = req.body;
+    const { amount, description, user_id, redirect_url } = req.body;
 
     if (!amount || !description || !user_id) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -33,10 +33,10 @@ app.post("/api/create-payment", async (req, res) => {
     const response = await axios.post(
       "https://api.riha.co.mz/payment-links",
       {
-        amount: 1,
+        amount,
         currency: "MT",
         description,
-        redirect_url: process.env.REDIRECT_URL || "https://certipm.com/projectQuiz",
+        redirect_url,
         webhook_url: process.env.WEBHOOK_URL || "https://api.certipm.com/api/webhook",
         metadata: { user_id, plan: "premium" },
         escrow_enabled: false 
@@ -60,7 +60,6 @@ app.post("/api/create-payment", async (req, res) => {
   }
 });
 
-// Webhook endpoint to receive payment notifications
 app.post("/api/webhook", (req, res) => {
   try {
     const event = req.body.event;
@@ -70,11 +69,8 @@ app.post("/api/webhook", (req, res) => {
 
     if (event === "payment.completed") {
       console.log(`Payment completed for user: ${data.metadata.user_id}`);
-      // Here you can update your database to mark the user as "paid"
-      // e.g., mark user as allowed to take the quiz
     }
 
-    // Respond 200 to acknowledge receipt
     res.status(200).send("Webhook received");
   } catch (error) {
     console.error("Webhook processing error:", error.message);

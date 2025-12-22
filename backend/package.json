@@ -14,10 +14,12 @@
   "dependencies": {
     "await": "^0.2.6",
     "axios": "^1.13.2",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "mongodb": "^7.0.0",
     "uuid": "^13.0.0"
   }
 }

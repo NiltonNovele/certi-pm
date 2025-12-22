@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CheckCircle2, Info } from "lucide-react";
-import quizQuestions from "../data/quizQuestions";
+import quizQuestions from "../data/pmpQuestions";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
 
