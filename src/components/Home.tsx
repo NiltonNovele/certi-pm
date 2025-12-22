@@ -46,7 +46,7 @@ const Home = () => {
       Empower yourself in project management, optimise processes, and prepare for internationally recognised certifications.
     </p>
 
-    <Link to="/projectQuiz">
+    <Link to="/choice">
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
