@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CheckCircle2, Info } from "lucide-react";
+import { BadgeCheck, Info } from "lucide-react";
 import quizQuestions from "../data/pmpQuestions";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
@@ -120,7 +120,7 @@ const ProjectQuiz: React.FC = () => {
           {/* HEADER */}
           <div className="text-center mb-10">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white shadow-lg mb-4">
-              <CheckCircle2 className="w-8 h-8 text-red-700" />
+              <BadgeCheck className="w-8 h-8 text-red-700" />
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
               PMP Practice Quiz
