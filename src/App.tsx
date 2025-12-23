@@ -20,6 +20,7 @@ import QuizRunner from "./components/QuizRunner";
 import QuizReview from "./components/QuizReview";
 import SCRUMQuiz from "./components/scrum";
 import Courses from "./components/courses";
+import Services from "./components/services";
 
 
 const token = localStorage.getItem("authToken");
@@ -40,6 +41,7 @@ function AppRoutes() {
   <Route path="/scrum" element={<SCRUMQuiz />} />
 
   <Route path="/choice" element={<Choose />} />
+  <Route path="/services" element={<Services />} />
   <Route path="/courses" element={<Courses />} />
   <Route path="/payment-success" element={<PaymentSuccess />} />
   <Route path="/results" element={<QuizReview />} />
