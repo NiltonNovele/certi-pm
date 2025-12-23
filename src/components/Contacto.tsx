@@ -105,7 +105,7 @@ const Enquiry: React.FC = () => {
                   Your message has been successfully sent. For faster assistance, use WhatsApp.
                 </p>
                 <a
-                  href="https://wa.me/258841234567?text=Hello!%20I%20would%20like%20more%20information."
+                  href="https://wa.me/258858029205?text=Hello!%20I%20would%20like%20more%20information."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium transition"
@@ -139,9 +139,9 @@ const Enquiry: React.FC = () => {
                   <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
                     WhatsApp
                   </h4>
-                  <p className="text-gray-700 dark:text-gray-400">+258 84 123 4567</p>
+                  <p className="text-gray-700 dark:text-gray-400">+258 85 802 9205</p>
                   <a
-                    href="https://wa.me/258841234567"
+                    href="https://wa.me/258858029205"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-2 px-4 py-2 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-md transition"

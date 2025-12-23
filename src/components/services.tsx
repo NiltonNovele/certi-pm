@@ -6,6 +6,11 @@ import {
   Target,
   ChevronDown,
   ChevronUp,
+  User,
+  Mail,
+  Building2,
+  MessageSquare,
+  Send,
 } from "lucide-react";
 
 interface Service {
@@ -175,47 +180,104 @@ const Services: React.FC = () => {
           </div>
 
           {/* REQUEST FORM */}
-          <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Request a Service
-            </h2>
+          <div className="max-w-3xl mx-auto bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-gray-100">
+  {/* Header */}
+  <div className="text-center mb-8">
+    <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
+      Request a Service
+    </h2>
+    <p className="text-gray-600 text-sm sm:text-base">
+      Tell us about your needs and we’ll get back to you shortly.
+    </p>
+  </div>
 
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="w-full px-4 py-3 border rounded-lg"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="w-full px-4 py-3 border rounded-lg"
-              />
-              <input
-                type="text"
-                placeholder="Organization"
-                className="w-full px-4 py-3 border rounded-lg"
-              />
-              <select className="w-full px-4 py-3 border rounded-lg">
-                <option>Select a Service</option>
-                {services.map((s) => (
-                  <option key={s.id}>{s.title}</option>
-                ))}
-              </select>
-              <textarea
-                placeholder="Tell us about your needs"
-                rows={4}
-                className="w-full px-4 py-3 border rounded-lg"
-              />
+  <form className="space-y-6">
+    {/* Full Name */}
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-1">
+        Full Name
+      </label>
+      <div className="relative">
+        <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <input
+          type="text"
+          placeholder="Your full name"
+          className="w-full pl-11 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition"
+        />
+      </div>
+    </div>
 
-              <button
-                type="submit"
-                className="w-full bg-red-700 text-white py-3 rounded-lg font-semibold hover:bg-red-800 transition"
-              >
-                Submit Request
-              </button>
-            </form>
-          </div>
+    {/* Email */}
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-1">
+        Email Address
+      </label>
+      <div className="relative">
+        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <input
+          type="email"
+          placeholder="you@example.com"
+          className="w-full pl-11 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition"
+        />
+      </div>
+    </div>
+
+    {/* Organization */}
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-1">
+        Organization
+      </label>
+      <div className="relative">
+        <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <input
+          type="text"
+          placeholder="Company or institution"
+          className="w-full pl-11 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition"
+        />
+      </div>
+    </div>
+
+    {/* Service Selection */}
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-1">
+        Service of Interest
+      </label>
+      <div className="relative">
+        <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <select className="w-full pl-11 pr-4 py-3 border rounded-lg bg-white focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition">
+          <option>Select a service</option>
+          {services.map((s) => (
+            <option key={s.id}>{s.title}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {/* Message */}
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-1">
+        Your Message
+      </label>
+      <div className="relative">
+        <MessageSquare className="absolute left-3 top-4 text-gray-400 w-5 h-5" />
+        <textarea
+          rows={4}
+          placeholder="Briefly describe your requirements..."
+          className="w-full pl-11 pr-4 py-3 border rounded-lg resize-none focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition"
+        />
+      </div>
+    </div>
+
+    {/* Submit */}
+    <button
+      type="submit"
+      className="w-full flex items-center justify-center gap-2 bg-red-700 text-white py-3.5 rounded-lg font-semibold hover:bg-red-800 transition-all shadow-md hover:shadow-lg"
+    >
+      Submit Request
+      <Send size={18} />
+    </button>
+  </form>
+</div>
         </div>
     </>
   );
