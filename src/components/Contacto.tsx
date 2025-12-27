@@ -158,7 +158,7 @@ const Enquiry: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-gray-900 dark:text-white">Email</h4>
-                  <p className="text-gray-700 dark:text-gray-400">help@certipm.com</p>
+                  <p className="text-gray-700 dark:text-gray-400">info@certipm.com</p>
                 </div>
               </div>
 
