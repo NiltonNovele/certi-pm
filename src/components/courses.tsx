@@ -152,6 +152,22 @@ const safeCourses: Course[] = [
       "Transformation roadmap creation",
     ],
   },
+  {
+  id: "teams",
+  title: "SAFe for Teams",
+  subtitle: "SAFe Practitioner (SP)",
+  description:
+    "The SAFe for Teams course (SAFe Practitioner – SP) is designed for individuals working in or preparing to join Agile teams within a SAFe organization. This training equips participants with the skills, mindset, and practical knowledge needed to collaborate effectively, deliver value consistently, and thrive in a scaled agile environment.",
+  instructor: "Certified SAFe Trainer",
+  coverImage: "/SAFe/teams.png",
+  type: "safe",
+  features: [
+    "Working on an Agile Release Train (ART) and collaborating across teams",
+    "Executing Iterations and PI Planning to improve alignment and delivery",
+    "Cross-team collaboration, communication, and alignment practices",
+    "Applying Lean-Agile principles including flow, customer focus, and continuous improvement",
+  ],
+}
 ];
 
 const Courses: React.FC = () => {
