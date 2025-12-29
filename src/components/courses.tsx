@@ -206,10 +206,8 @@ const Courses: React.FC = () => {
 
   return (
     <>
-      <SignedIn>
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6">
 
-          {/* ===== CERTIFICATION COURSES ===== */}
           <div className="max-w-7xl mx-auto mb-16">
             <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3 text-center">
               Professional Certification Courses
@@ -296,16 +294,6 @@ const Courses: React.FC = () => {
             </div>
           </div>
         </div>
-      </SignedIn>
-
-      <SignedOut>
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            You must sign in to view courses
-          </h2>
-          <SignIn path="/courses" routing="path" />
-        </div>
-      </SignedOut>
     </>
   );
 };
