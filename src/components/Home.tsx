@@ -68,17 +68,7 @@ const Home = () => {
           whileTap={{ scale: 0.95 }}
           className="px-12 py-4 bg-[#7a0b0b] hover:bg-[#910e0e] rounded-full text-white font-semibold text-lg shadow-lg transition-colors duration-300"
         >
-          View Services
-        </motion.button>
-      </Link>
-
-      <Link to="/courses">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-12 py-4 bg-[#7a0b0b] hover:bg-[#910e0e] rounded-full text-white font-semibold text-lg shadow-lg transition-colors duration-300"
-        >
-          View Courses
+          View our Services
         </motion.button>
       </Link>
     </div>

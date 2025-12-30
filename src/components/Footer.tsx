@@ -153,7 +153,7 @@ const Footer: React.FC<FooterProps> = () => {
 
               <div className="mt-6 w-full h-24 border border-dashed rounded-lg flex items-center justify-center bg-white dark:bg-gray-800">
                 <img
-                  src="/logowhite.jpeg"
+                  src="/logowhite.png"
                   alt="Project Direct Logo"
                   className="max-h-20 object-contain"
                 />
