@@ -17,7 +17,7 @@ const Navigation = () => {
     { path: "/", label: "Home", icon: Home },
     { path: "/courses", label: "Courses", icon: BookOpenText },
     { path: "/choice", label: "Practice", icon: Brain },
-    { path: "/services", label: "Consultancy", icon:  Compass },
+    { path: "/services", label: "Consultancy", icon: Compass },
     { path: "/contact", label: "Contact", icon: Contact },
   ];
 
@@ -26,8 +26,9 @@ const Navigation = () => {
       <nav className="bg-[#7A0A0A] shadow-lg sticky top-0 z-50 border-b border-[#9c1d1d] transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Logo */}
+            {/* Logo + ATP Badge */}
             <Link to="/" className="flex items-center space-x-3">
+              <img src="/atp.jpeg" alt="PMI ATP Badge" className="w-10 h-auto rounded shadow-sm border border-white" />
               <BadgeCheck className="w-9 h-9 text-white" />
               <div>
                 <span className="text-2xl font-extrabold text-white tracking-wide uppercase">
@@ -122,15 +123,7 @@ const Navigation = () => {
       {/* Clerk SignIn Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 px-4">
-          {/* <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full relative">
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl font-bold"
-            >
-              ×
-            </button> */}
-            <SignIn />
-          {/* </div> */}
+          <SignIn />
         </div>
       )}
     </>

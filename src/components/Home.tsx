@@ -21,90 +21,69 @@ const Home = () => {
 
       {/* HERO SECTION */}
       <section className="relative w-full h-[85vh] flex items-center justify-center text-center px-6 md:px-12 overflow-hidden">
-        <img
-          src="/illus.jpg"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          alt="Certi PM Banner"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/60"></div>
+  <img
+    src="/illus.jpg"
+    className="absolute inset-0 w-full h-full object-cover opacity-30"
+    alt="Certi PM Banner"
+  />
+  <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/60"></div>
 
-        <motion.div
-          className="relative z-10 max-w-4xl mx-auto space-y-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+  <motion.div
+    className="relative z-10 max-w-4xl mx-auto space-y-4"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-[#7a0b0b] drop-shadow-lg">
+      Certi PM • Project Management Training & Certification
+    </h1>
+
+    <div className="flex items-center justify-center gap-3 mt-2">
+      <img src="/atp.jpeg" alt="PMI ATP Badge" className="w-16 h-auto rounded shadow-sm" />
+      <span className="text-sm md:text-base text-gray-700 font-medium">
+        Authorized Training Partner by PMI
+      </span>
+    </div>
+
+    <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-800 mt-4">
+      Empower yourself in project management, optimise processes, and prepare for internationally recognised certifications.
+    </p>
+
+    {/* Action Buttons */}
+    <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+      <Link to="/choice">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="px-12 py-4 bg-[#8b0d0d] hover:bg-[#a11212] rounded-full text-white font-semibold text-lg shadow-lg flex items-center justify-center gap-3 transition-colors duration-300"
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-[#7a0b0b] drop-shadow-lg">
-            Certi PM • Project Management Training & Certification
-          </h1>
+          <Rocket className="w-6 h-6" />
+          Practice Now
+        </motion.button>
+      </Link>
 
-          <div className="flex items-center justify-center gap-3 mt-2">
-            <img src="/atp.jpeg" alt="PMI ATP Badge" className="w-16 h-auto rounded shadow-sm" />
-            <span className="text-sm md:text-base text-gray-700 font-medium">
-              Authorized Training Partner by PMI
-            </span>
-          </div>
+      <Link to="/services">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="px-12 py-4 bg-[#7a0b0b] hover:bg-[#910e0e] rounded-full text-white font-semibold text-lg shadow-lg transition-colors duration-300"
+        >
+          View Services
+        </motion.button>
+      </Link>
 
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-800 mt-4">
-            Empower yourself in project management, optimise processes, and prepare for internationally recognised certifications.
-          </p>
-
-          <Link to="/choice">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mt-6 px-12 py-4 bg-[#8b0d0d] hover:bg-[#a11212] rounded-full text-white font-semibold text-lg shadow-lg flex items-center justify-center gap-3 transition-colors duration-300"
-            >
-              <Rocket className="w-6 h-6" />
-              Practice Now
-            </motion.button>
-          </Link>
-        </motion.div>
-      </section>
-
-      {/* ABOUT US */}
-      <section className="py-20 bg-[#f8f8f8]">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="flex flex-col items-center gap-6">
-            <img
-              src="/illus.jpg"
-              className="w-full max-w-md h-80 rounded-3xl object-cover shadow-xl border-2 border-[#7a0b0b] hover:scale-105 transition-transform duration-300"
-              alt="Certi PM Logo"
-            />
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <img src="/atp.jpeg" alt="PMI ATP Badge" className="w-28 h-auto rounded-lg shadow-md" />
-              <span className="text-sm text-gray-700 text-center sm:text-left">
-                <strong>Project Direct Lda.</strong> is a <strong>PMI Authorized Training Partner</strong>
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold mb-4 text-[#7a0b0b]">About Certi PM</h2>
-            <p className="text-gray-700 leading-relaxed">
-              Certi PM is a specialised platform, belonging to <strong>Project Direct Lda.</strong>, focused on training and certification in project management. Our mission is to prepare professionals to lead projects effectively by applying global best practices.
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              We offer courses, workshops, and support for preparation towards internationally recognised certifications.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-              <div className="flex items-center gap-3">
-                <BookOpen className="w-6 h-6 text-[#7a0b0b]" />
-                <span className="text-gray-700 text-sm font-medium">Comprehensive Courses</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Users className="w-6 h-6 text-[#7a0b0b]" />
-                <span className="text-gray-700 text-sm font-medium">Expert Mentorship</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Award className="w-6 h-6 text-[#7a0b0b]" />
-                <span className="text-gray-700 text-sm font-medium">Certified Programs</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Link to="/courses">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="px-12 py-4 bg-[#7a0b0b] hover:bg-[#910e0e] rounded-full text-white font-semibold text-lg shadow-lg transition-colors duration-300"
+        >
+          View Courses
+        </motion.button>
+      </Link>
+    </div>
+  </motion.div>
+</section>
 
       {/* WHAT WE OFFER */}
       <section className="py-20 bg-white">
