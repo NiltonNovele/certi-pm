@@ -154,7 +154,7 @@ const Home = () => {
             {/* Instructor Card */}
             <div className="flex flex-col items-center text-center bg-[#f9f9f9] p-8 rounded-2xl shadow-lg border gap-4">
               <img src="/patricio.jpg" className="w-48 h-48 rounded-2xl object-cover shadow-md border border-[#8b0d0d]" alt="Patricio Inacio" />
-              <img src="/atp.jpeg" alt="PMI ATI Badge" className="w-28 h-auto rounded shadow" />
+              <img src="/inst.jpeg" alt="PMI ATI Badge" className="w-28 h-auto rounded shadow" />
               <h3 className="text-xl font-bold text-gray-800">Patricio Inacio</h3>
               <p className="text-[#7a0b0b] font-semibold text-sm mb-3">PMP, SAFe 6 SPC, PSM II, PRINCE2</p>
               <p className="text-sm text-gray-600 mb-6">Project Manager | Agile Coach | Digital Transformation Expert</p>

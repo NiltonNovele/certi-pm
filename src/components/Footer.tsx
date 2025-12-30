@@ -92,7 +92,7 @@ const Footer: React.FC<FooterProps> = () => {
                     className="cursor-pointer w-28 h-20 border border-dashed border-gray-400 dark:border-gray-600 rounded-lg flex items-center justify-center bg-white dark:bg-gray-800 hover:scale-105 transition"
                   >
                     <img
-                      src="/atp.jpeg"
+                      src="/inst.jpeg"
                       alt="Authorized Training Instructor"
                       className="max-h-16 object-contain"
                     />
