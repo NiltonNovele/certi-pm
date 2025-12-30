@@ -161,9 +161,18 @@ const Home = () => {
 
   {/* BADGES SIDE BY SIDE */}
   <div className="flex items-center justify-center gap-4">
-    <img src="/inst.jpeg" alt="PMI ATI Badge" className="w-28 h-auto rounded shadow" />
-    <img src="/safe.jpg" alt="SAFe Badge" className="w-28 h-auto rounded shadow" />
-  </div>
+  <img
+    src="/inst.jpeg"
+    alt="PMI ATI Badge"
+    className="w-28 h-28 object-contain rounded shadow"
+  />
+  <img
+    src="/safe.jpg"
+    alt="SAFe Badge"
+    className="w-28 h-28 object-contain rounded shadow"
+  />
+</div>
+
 
   <h3 className="text-xl font-bold text-gray-800">Patricio Inacio</h3>
   <p className="text-[#7a0b0b] font-semibold text-sm mb-3">PMP, SAFe 6 SPC, PSM II, PRINCE2</p>
