@@ -153,15 +153,31 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             {/* Instructor Card */}
             <div className="flex flex-col items-center text-center bg-[#f9f9f9] p-8 rounded-2xl shadow-lg border gap-4">
-              <img src="/patricio.jpg" className="w-48 h-48 rounded-2xl object-cover shadow-md border border-[#8b0d0d]" alt="Patricio Inacio" />
-              <img src="/inst.jpeg" alt="PMI ATI Badge" className="w-28 h-auto rounded shadow" />
-              <h3 className="text-xl font-bold text-gray-800">Patricio Inacio</h3>
-              <p className="text-[#7a0b0b] font-semibold text-sm mb-3">PMP, SAFe 6 SPC, PSM II, PRINCE2</p>
-              <p className="text-sm text-gray-600 mb-6">Project Manager | Agile Coach | Digital Transformation Expert</p>
-              <a href="https://www.linkedin.com/in/patricio-inacio-pmp-safe-6-spc-977b4bb2/" target="_blank" className="flex items-center gap-2 px-5 py-2 border border-[#7a0b0b] text-[#7a0b0b] rounded-full hover:bg-[#7a0b0b] hover:text-white transition-all">
-                <Linkedin size={18} /> View LinkedIn
-              </a>
-            </div>
+  <img
+    src="/patricio.jpg"
+    className="w-48 h-48 rounded-2xl object-cover shadow-md border border-[#8b0d0d]"
+    alt="Patricio Inacio"
+  />
+
+  {/* BADGES SIDE BY SIDE */}
+  <div className="flex items-center justify-center gap-4">
+    <img src="/inst.jpeg" alt="PMI ATI Badge" className="w-28 h-auto rounded shadow" />
+    <img src="/safe.jpg" alt="SAFe Badge" className="w-28 h-auto rounded shadow" />
+  </div>
+
+  <h3 className="text-xl font-bold text-gray-800">Patricio Inacio</h3>
+  <p className="text-[#7a0b0b] font-semibold text-sm mb-3">PMP, SAFe 6 SPC, PSM II, PRINCE2</p>
+  <p className="text-sm text-gray-600 mb-6">Project Manager | Agile Coach | Digital Transformation Expert</p>
+
+  <a
+    href="https://www.linkedin.com/in/patricio-inacio-pmp-safe-6-spc-977b4bb2/"
+    target="_blank"
+    className="flex items-center gap-2 px-5 py-2 border border-[#7a0b0b] text-[#7a0b0b] rounded-full hover:bg-[#7a0b0b] hover:text-white transition-all"
+  >
+    <Linkedin size={18} /> View LinkedIn
+  </a>
+</div>
+
 
             {/* Professional Info */}
             <div className="lg:col-span-2 space-y-10">
