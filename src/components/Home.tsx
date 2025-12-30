@@ -61,16 +61,6 @@ const Home = () => {
           Practice Now
         </motion.button>
       </Link>
-
-      <Link to="/services">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-12 py-4 bg-[#7a0b0b] hover:bg-[#910e0e] rounded-full text-white font-semibold text-lg shadow-lg transition-colors duration-300"
-        >
-          View our Services
-        </motion.button>
-      </Link>
     </div>
   </motion.div>
 </section>
