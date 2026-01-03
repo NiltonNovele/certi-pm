@@ -32,7 +32,7 @@ const Enquiry: React.FC = () => {
                 <h2 className="text-2xl font-bold text-[#7a0b0b] dark:text-white mb-10">
                   Contact Form
                 </h2>
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form action="https://formsubmit.co/patricioinaciodba@gmail.com" method="POST" className="space-y-6">
                   {/* Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
