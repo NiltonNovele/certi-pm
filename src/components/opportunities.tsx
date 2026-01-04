@@ -93,7 +93,7 @@ const Opportunities: React.FC = () => {
   // Admin PIN access
   // ---------------------------
   const handlePinSubmit = () => {
-    if (pinInput === "1234") {
+    if (pinInput === "1423") {
       setIsAdmin(true);
       setAdminView(true);
       setShowPinModal(false);
