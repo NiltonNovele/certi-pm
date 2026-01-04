@@ -6,7 +6,7 @@ import {
   UserButton,
   SignIn,
 } from "@clerk/clerk-react";
-import { Home, Brain, Contact, Menu, X, BadgeCheck, LogIn, BookOpenText, Compass } from "lucide-react";
+import { Home, Brain, Contact, Menu, X, BadgeCheck, LogIn, BookOpenText, Compass, Briefcase } from "lucide-react";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -18,6 +18,7 @@ const Navigation = () => {
     { path: "/courses", label: "Courses", icon: BookOpenText },
     { path: "/choice", label: "Practice", icon: Brain },
     { path: "/services", label: "Consultancy", icon: Compass },
+    { path: "/opportunities", label: "Opportunities", icon: Briefcase },
     { path: "/contact", label: "Contact", icon: Contact },
   ];
 

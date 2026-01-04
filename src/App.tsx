@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { SignedIn, SignedOut } from '@clerk/clerk-react';
+// import { SignedIn, SignedOut } from '@clerk/clerk-react';
 
 import Home from "./components/Home";
 import Enquiry from "./components/Contacto";
@@ -12,7 +12,7 @@ import CookieConsent from "./components/CookieConsent";
 import Navigation from "./components/Navigation";
 
 import NotFound from "./components/404";
-import PaymentSuccess from "./components/PaymentSuccess";
+// import PaymentSuccess from "./components/PaymentSuccess";
 import Choose from "./components/choice";
 import CAPM from "./components/capm"; 
 import AdminDashboard from "./components/admin";
@@ -21,6 +21,7 @@ import QuizReview from "./components/QuizReview";
 import SCRUMQuiz from "./components/scrum";
 import Courses from "./components/courses";
 import Services from "./components/services";
+import Opportunities from "./components/opportunities";
 
 
 const token = localStorage.getItem("authToken");
@@ -43,7 +44,8 @@ function AppRoutes() {
   <Route path="/choice" element={<Choose />} />
   <Route path="/services" element={<Services />} />
   <Route path="/courses" element={<Courses />} />
-  <Route path="/payment-success" element={<PaymentSuccess />} />
+  <Route path="/runner" element={<QuizRunner />} />
+  <Route path="/opportunities" element={<Opportunities />} />
   <Route path="/results" element={<QuizReview />} />
 
   <Route path="*" element={<NotFound />} />
