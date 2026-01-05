@@ -27,7 +27,7 @@ const courses: Course[] = [
     description:
       "Prepare for your PMP® certification with in-depth coverage of PMBOK® Guide 7th Edition, Agile and Hybrid approaches.",
     instructor: "Patricio Inacio",
-    price: 9999,
+    price: 10499,
     originalPrice: 17999,
     promotion: "Black November",
     coverImage: "/pmp.webp",
