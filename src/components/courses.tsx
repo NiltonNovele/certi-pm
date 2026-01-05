@@ -245,7 +245,7 @@ const Courses: React.FC = () => {
                     </div>
 
                     <button
-                      onClick={() => handleEnroll(course)}
+                      onClick={() => window.location.href = "https://register.certipm.com"}
                       className="mt-auto bg-red-700 hover:bg-red-800 text-white py-3 rounded-lg font-semibold"
                     >
                       {loading === course.id ? "Processing..." : "Enroll Now"}
