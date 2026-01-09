@@ -65,6 +65,135 @@ const Home = () => {
   </motion.div>
 </section>
 
+{/* ABOUT CERTI PM */}
+<section className="py-24 bg-white">
+  <div className="max-w-6xl mx-auto px-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      {/* LEFT CONTENT */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="space-y-8"
+      >
+        {/* SMALL LABEL */}
+        <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#7a0b0b]/10 text-[#7a0b0b] text-sm font-semibold">
+          <Award className="w-4 h-4" />
+          About Us
+        </span>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#7a0b0b] leading-tight">
+          Building Project Leaders for a <br className="hidden sm:block" /> Global Standard
+        </h2>
+
+        <div className="space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            <strong>Certi PM</strong> is a specialised project management training and certification
+            platform operating under <strong>Project Direct Lda.</strong> We focus on empowering
+            professionals and organisations with practical skills, structured methodologies,
+            and internationally recognised standards.
+          </p>
+
+          <p>
+            We are proud to be the <strong>first and only PMI® Authorized Training Partner (ATP)
+            in Mozambique</strong>, delivering official, high-quality PMI-aligned training that
+            prepares candidates to succeed in real-world project environments.
+          </p>
+        </div>
+
+        {/* FEATURES */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+          {[
+            {
+              icon: <BookOpen className="w-6 h-6" />,
+              title: "Structured Learning",
+              desc: "Clear learning paths aligned with PMI® frameworks and best practices.",
+            },
+            {
+              icon: <Users className="w-6 h-6" />,
+              title: "Expert-Led Training",
+              desc: "Courses delivered by certified instructors with real industry experience.",
+            },
+            {
+              icon: <ShieldCheck className="w-6 h-6" />,
+              title: "Official PMI Content",
+              desc: "Authorised materials that reflect the latest global standards.",
+            },
+            {
+              icon: <TrendingUp className="w-6 h-6" />,
+              title: "Career Impact",
+              desc: "Skills and certifications that accelerate professional growth.",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-4 p-5 rounded-2xl bg-[#fafafa] border border-gray-200 hover:shadow-md transition"
+            >
+              <div className="p-3 rounded-xl bg-[#7a0b0b]/10 text-[#7a0b0b]">
+                {item.icon}
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-800">{item.title}</h4>
+                <p className="text-sm text-gray-600">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* RIGHT VISUALS */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative"
+      >
+        {/* MAIN IMAGE */}
+        <div className="relative rounded-3xl overflow-hidden shadow-xl border bg-white">
+          <img
+            src="/illus.jpg"
+            alt="Certi PM Training Session"
+            className="w-full h-[420px] object-cover"
+          />
+        </div>
+
+        {/* ILLUSTRATION CARD */}
+        <div className="absolute -top-10 -right-10 hidden md:block">
+          <div className="bg-white p-4 rounded-2xl shadow-lg border">
+            <img
+              src="/inst.jpeg"
+              alt="Project Management Illustration"
+              className="w-32 h-32 object-contain"
+            />
+          </div>
+        </div>
+
+        {/* PMI ATP BADGE */}
+        <div className="absolute -bottom-10 left-6 bg-white rounded-2xl shadow-xl border p-6 flex items-center gap-4 max-w-xs">
+          <img
+            src="/atp.jpeg"
+            alt="PMI Authorized Training Partner"
+            className="w-14 h-14 object-contain"
+          />
+          <div>
+            <p className="text-sm font-bold text-gray-800 leading-tight">
+              PMI® Authorized Training Partner
+            </p>
+            <p className="text-xs text-gray-600">
+              First & Only in Mozambique
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
+    </div>
+  </div>
+</section>
+
+
       {/* WHAT WE OFFER */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
