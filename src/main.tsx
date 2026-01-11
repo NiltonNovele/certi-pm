@@ -3,6 +3,12 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { ClerkProvider } from '@clerk/clerk-react';
+import { PostHogProvider } from 'posthog-js/react'
+
+const options = {
+  api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+  defaults: '2025-11-30',
+} as const
 
 const clerkPublishableKey = import.meta.env.VITE_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -12,8 +18,10 @@ if (!clerkPublishableKey) {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ClerkProvider publishableKey={clerkPublishableKey}>
-      <App />
-    </ClerkProvider>
+    <PostHogProvider apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY} options={options}>
+      <ClerkProvider publishableKey={clerkPublishableKey}>
+        <App />
+      </ClerkProvider>
+    </PostHogProvider>
   </StrictMode>
 );
