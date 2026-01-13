@@ -187,7 +187,7 @@ const ProjectQuiz: React.FC = () => {
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <div className="flex justify-between mt-2 text-xs font-medium">
+              {/* <div className="flex justify-between mt-2 text-xs font-medium">
                 {steps.map((label, i) => (
                   <span
                     key={i}
@@ -198,7 +198,7 @@ const ProjectQuiz: React.FC = () => {
                     {label}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
           )}
 
