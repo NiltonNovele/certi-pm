@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BadgeCheck, Info } from "lucide-react";
 import quizQuestions from "../data/pmpQuestions";
-import { useNavigate, useLocation } from "react-router-dom";
 import { SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface Question {
   scenario: string;
@@ -28,33 +28,38 @@ const steps = Array.from(
 );
 
 const ProjectQuiz: React.FC = () => {
-  const [step, setStep] = useState(1);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<string[]>(Array(quizQuestions.length).fill(""));
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Handle payment redirect query params
+  const [step, setStep] = useState(1);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState<string[]>(
+    Array(quizQuestions.length).fill("")
+  );
+  const [timeLeft, setTimeLeft] = useState(QUIZ_TIME_SECONDS);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reviewMode, setReviewMode] = useState(false);
+  const [score, setScore] = useState<number | null>(null);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+  // PAYMENT REDIRECT
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    if (params.get("status") === "success" && params.get("payment_id")) {
-      setPaymentSuccess(true); // optional: show success message
+    if (params.get("status") === "success") {
+      setPaymentSuccess(true);
       navigate("/projectQuiz", { replace: true });
     }
   }, [location, navigate]);
 
   // TIMER
-  const [timeLeft, setTimeLeft] = useState(QUIZ_TIME_SECONDS);
-
   useEffect(() => {
+    if (reviewMode) return;
+
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          navigate("/results", { state: { userAnswers: answers } });
+          submitQuiz();
           return 0;
         }
         return prev - 1;
@@ -62,11 +67,7 @@ const ProjectQuiz: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [navigate, answers]);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentQuestionIndex, step]);
+  }, [reviewMode]);
 
   const handleAnswerChange = (index: number, value: string) => {
     const updated = [...answers];
@@ -77,23 +78,35 @@ const ProjectQuiz: React.FC = () => {
   const nextQuestion = () => {
     if (currentQuestionIndex < quizQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
-      if ((currentQuestionIndex + 1) % stepSize === 0) setStep((prev) => prev + 1);
+      if ((currentQuestionIndex + 1) % stepSize === 0)
+        setStep((prev) => prev + 1);
     }
   };
 
   const prevQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
-      if (currentQuestionIndex % stepSize === 0) setStep((prev) => prev - 1);
+      if (currentQuestionIndex % stepSize === 0)
+        setStep((prev) => prev - 1);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate("/results", { state: { userAnswers: answers } });
+  const submitQuiz = () => {
+    const correct = answers.filter(
+      (a, i) => a === quizQuestions[i].correctAnswer
+    ).length;
+
+    const percentage = Math.round(
+      (correct / quizQuestions.length) * 100
+    );
+
+    setScore(percentage);
+    setReviewMode(true);
   };
 
-  const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+  const progress =
+    ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+
   const q = quizQuestions[currentQuestionIndex];
 
   const formatTime = (seconds: number) => {
@@ -109,10 +122,9 @@ const ProjectQuiz: React.FC = () => {
     <SignedIn>
       <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto relative">
-          
-          {/* Payment success alert */}
+
           {paymentSuccess && (
-            <div className="mb-4 p-4 bg-green-100 text-green-800 rounded-lg text-center font-semibold">
+            <div className="mb-4 p-4 bg-green-100 text-green-800 rounded text-center font-semibold">
               Payment successful! You can now start the quiz.
             </div>
           )}
@@ -125,17 +137,17 @@ const ProjectQuiz: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
               PMP Practice Quiz
             </h1>
-            <p className="mt-2 text-gray-700 max-w-2xl mx-auto">
-              Read each question carefully and select the most appropriate answer.
-            </p>
-            <div className="mt-4 text-xl font-bold text-red-700">
-              Time Remaining: {formatTime(timeLeft)}
-            </div>
+
+            {!reviewMode && (
+              <div className="mt-4 text-xl font-bold text-red-700">
+                Time Remaining: {formatTime(timeLeft)}
+              </div>
+            )}
           </div>
 
-          {/* INFO MODAL BUTTON */}
+          {/* INFO BUTTON */}
           <button
-            className="absolute top-4 right-4 p-3 bg-red-700 text-white rounded-full shadow-lg hover:bg-red-800 transition-colors"
+            className="absolute top-4 right-4 p-3 bg-red-700 text-white rounded-full shadow-lg"
             onClick={() => setIsModalOpen(true)}
           >
             <Info className="w-5 h-5" />
@@ -143,127 +155,143 @@ const ProjectQuiz: React.FC = () => {
 
           {/* INFO MODAL */}
           {isModalOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 px-4">
+            <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
               <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full relative">
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl font-bold"
+                  className="absolute top-2 right-2 text-2xl"
                 >
                   ×
                 </button>
-                <h3 className="font-semibold text-xl mb-2 text-center">
+                <h3 className="font-semibold text-xl text-center mb-4">
                   Quiz Responsible
                 </h3>
                 <img
                   src="/patricio.jpg"
-                  alt="Responsible person"
-                  className="w-32 h-32 rounded-full mx-auto mb-4"
+                  className="w-32 h-32 rounded-full mx-auto mb-2"
                 />
-                <p className="text-center text-lg">Patricio Inacio</p>
+                <p className="text-center">Patricio Inacio</p>
                 <p className="text-center text-sm text-gray-600">
-                  Email: patricio.inacio@certipm.com
+                  patricio.inacio@certipm.com
                 </p>
               </div>
             </div>
           )}
 
-          {/* PROGRESS BAR */}
-          <div className="relative mb-8">
-            <div className="h-2 bg-gray-300 rounded-full">
-              <div
-                className="h-2 bg-gradient-to-r from-red-700 to-black rounded-full transition-all duration-500"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <div className="flex flex-wrap justify-between mt-2 text-xs sm:text-sm font-medium gap-y-1">
-              {steps.map((label, index) => (
-                <span
-                  key={index}
-                  className={
-                    index + 1 <= step
-                      ? "text-red-700 font-semibold"
-                      : "text-gray-400"
-                  }
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* QUIZ FORM */}
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white border border-red-700 shadow-xl rounded-2xl p-6 sm:p-10 space-y-8"
-          >
-            <div className="space-y-2">
-              <p className="font-medium text-gray-800 italic mb-1">
-                Scenario: {q.scenario}
-              </p>
-              <p className="font-semibold text-gray-900">
-                Q{currentQuestionIndex + 1}: {q.question}
-              </p>
-              <div className="flex flex-col gap-2 mt-1">
-                {q.options.map((option, idx) => (
-                  <label
-                    key={idx}
-                    className="flex items-center gap-2 cursor-pointer text-gray-800"
+          {/* PROGRESS */}
+          {!reviewMode && (
+            <div className="mb-8">
+              <div className="h-2 bg-gray-300 rounded-full">
+                <div
+                  className="h-2 bg-gradient-to-r from-red-700 to-black rounded-full"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <div className="flex justify-between mt-2 text-xs font-medium">
+                {steps.map((label, i) => (
+                  <span
+                    key={i}
+                    className={
+                      i + 1 <= step ? "text-red-700" : "text-gray-400"
+                    }
                   >
-                    <input
-                      type="radio"
-                      name={`q${currentQuestionIndex}`}
-                      value={option}
-                      checked={answers[currentQuestionIndex] === option}
-                      onChange={() =>
-                        handleAnswerChange(currentQuestionIndex, option)
-                      }
-                      className="accent-red-700 focus:ring-red-700"
-                    />
-                    <span>
-                      {String.fromCharCode(65 + idx)}. {option}
-                    </span>
-                  </label>
+                    {label}
+                  </span>
                 ))}
               </div>
             </div>
+          )}
 
-            {/* NAVIGATION */}
-            <div className="flex flex-col sm:flex-row justify-between mt-6 gap-2 sm:gap-0">
-              <button
-                type="button"
-                onClick={prevQuestion}
-                disabled={currentQuestionIndex === 0}
-                className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 w-full sm:w-auto"
-              >
-                Previous
-              </button>
-              {currentQuestionIndex === quizQuestions.length - 1 ? (
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors w-full sm:w-auto"
-                >
-                  Submit
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={nextQuestion}
-                  className="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors w-full sm:w-auto"
-                >
-                  Next
-                </button>
-              )}
-            </div>
-          </form>
+          {/* QUIZ / REVIEW */}
+          <div className="bg-white border border-red-700 shadow-xl rounded-2xl p-6 space-y-6">
+            {!reviewMode ? (
+              <>
+                <p className="italic text-gray-700">
+                  Scenario: {q.scenario}
+                </p>
+                <p className="font-semibold">
+                  Q{currentQuestionIndex + 1}: {q.question}
+                </p>
+
+                {q.options.map((o, i) => (
+                  <label key={i} className="flex gap-2">
+                    <input
+                      type="radio"
+                      checked={answers[currentQuestionIndex] === o}
+                      onChange={() =>
+                        handleAnswerChange(currentQuestionIndex, o)
+                      }
+                    />
+                    {o}
+                  </label>
+                ))}
+
+                <div className="flex justify-between mt-6">
+                  <button
+                    onClick={prevQuestion}
+                    disabled={currentQuestionIndex === 0}
+                    className="px-4 py-2 bg-gray-700 text-white rounded"
+                  >
+                    Previous
+                  </button>
+
+                  {currentQuestionIndex === quizQuestions.length - 1 ? (
+                    <button
+                      onClick={submitQuiz}
+                      className="px-4 py-2 bg-red-700 text-white rounded"
+                    >
+                      Submit
+                    </button>
+                  ) : (
+                    <button
+                      onClick={nextQuestion}
+                      className="px-4 py-2 bg-red-700 text-white rounded"
+                    >
+                      Next
+                    </button>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="text-xl font-bold text-center">
+                  Final Score: {score}%
+                </h2>
+
+                {quizQuestions.map((q, i) => (
+                  <div key={i} className="border-t pt-4">
+                    <p className="font-semibold">{q.question}</p>
+
+                    <p>
+                      Your answer:{" "}
+                      <span
+                        className={
+                          answers[i] === q.correctAnswer
+                            ? "text-green-600"
+                            : "text-red-600"
+                        }
+                      >
+                        {answers[i] || "No answer"}
+                      </span>
+                    </p>
+
+                    <p className="text-green-700">
+                      Correct answer: {q.correctAnswer}
+                    </p>
+
+                    <p className="text-sm text-gray-600 mt-1">
+                      {q.explanation}
+                    </p>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* SIGNED OUT */}
       <SignedOut>
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            You must sign in to access the quiz
-          </h2>
+        <div className="flex flex-col items-center justify-center min-h-screen">
           <SignIn path="/projectQuiz" routing="path" />
         </div>
       </SignedOut>
