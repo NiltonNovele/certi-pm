@@ -2753,10 +2753,137 @@ const quizQuestions: Question[] = [
     "Conducting a compliance audit comparing implementation against the checklist",
   explanation:
     "Compliance audits using checklists provide objective, measurable insights. Verbal confirmation is unreliable, lessons learned are for planning, and waiting until close-out prevents proactive corrections."
-}
-
-
-
+},
+//1
+  {
+    "scenario": "A global software upgrade project distributes a monthly newsletter with status, metrics, and milestones to 500 stakeholders as a one-way communication.",
+    "question": "What is the primary communication method being used?",
+    "options": [
+      "Interactive communication",
+      "Pull communication",
+      "Push communication*",
+      "Lateral communication"
+    ],
+    "correctAnswer": "Push communication",
+    "explanation": "Push communication is one-way distribution of information to specific recipients, such as newsletters and mass emails."
+  },
+  //2
+  {
+    "scenario": "A site foreman needs immediate clarification from a structural engineer about a steel beam specification while a crane is on standby.",
+    "question": "What is the MOST effective communication method?",
+    "options": [
+      "Send a detailed email",
+      "Post the query on the project portal",
+      "Call the engineer on the phone for a direct conversation*",
+      "Issue a formal RFI"
+    ],
+    "correctAnswer": "Call the engineer on the phone for a direct conversation",
+    "explanation": "Time-critical issues require interactive, real-time communication to enable rapid clarification and decision-making."
+  },
+  //3
+  {
+    "scenario": "The PMO compiles lessons learned, templates, and procedures for teams to access on demand.",
+    "question": "What communication method should they establish?",
+    "options": [
+      "Push communication via scheduled emails",
+      "Interactive communication through workshops",
+      "Pull communication via a dedicated PMO knowledge management system*",
+      "Push communication through charter links"
+    ],
+    "correctAnswer": "Pull communication via a dedicated PMO knowledge management system",
+    "explanation": "Pull communication allows users to access large volumes of information when needed through a central repository."
+  },
+  //4
+  {
+    "scenario": "A startup launches a limited version of a food delivery app to validate demand before scaling.",
+    "question": "This initial release is best described as a:",
+    "options": [
+      "Minimum Business Increment (MBI)",
+      "Minimum Viable Product (MVP)*",
+      "Prototype",
+      "Project Deliverable"
+    ],
+    "correctAnswer": "Minimum Viable Product (MVP)",
+    "explanation": "An MVP contains just enough features to be usable by early customers to gather feedback and validate the business idea."
+  },
+  //5
+  {
+    "scenario": "A bank releases a credit score check feature that allows manual loan processing and revenue generation.",
+    "question": "This approach prioritizes delivering a:",
+    "options": [
+      "Minimum Marketable Feature (MMF)",
+      "Minimum Viable Product (MVP)",
+      "Minimum Business Increment (MBI)*",
+      "Work Package"
+    ],
+    "correctAnswer": "Minimum Business Increment (MBI)",
+    "explanation": "An MBI is the smallest unit of work that delivers standalone, measurable business value."
+  },
+  //6
+  {
+    "scenario": "After launching an MVP, the team focuses a sprint on fixing payment gateway errors.",
+    "question": "This sprint goal is primarily focused on:",
+    "options": [
+      "Developing a new MBI",
+      "Enhancing the MVP",
+      "Creating a prototype",
+      "Performing defect repair on the MVP*"
+    ],
+    "correctAnswer": "Performing defect repair on the MVP",
+    "explanation": "The work corrects defects in existing functionality rather than adding new features."
+  },
+  //7
+  {
+    "scenario": "At a project kickoff, a sponsor signs a document authorizing the project and granting authority to the project manager.",
+    "question": "This document is an example of a:",
+    "options": [
+      "Project Deliverable",
+      "Project Management Plan",
+      "Project Artifact*",
+      "Project Document"
+    ],
+    "correctAnswer": "Project Artifact",
+    "explanation": "The project charter is a foundational project artifact that formally authorizes the project."
+  },
+  //8
+  {
+    "scenario": "A graphic designer shares a .psd source file of a banner ad for review during execution.",
+    "question": "This file is best classified as a:",
+    "options": [
+      "Project Deliverable",
+      "Organizational Process Asset",
+      "Work Performance Data",
+      "Project Document*"
+    ],
+    "correctAnswer": "Project Document",
+    "explanation": "The source file is a working project document used to create the final deliverable."
+  },
+  //9
+  {
+    "scenario": "At project close, the PM archives the final system, as-built diagrams, and signed acceptance form.",
+    "question": "These items collectively represent the project's:",
+    "options": [
+      "Project Management Plan",
+      "Final Product and Project Documents",
+      "Formal Acceptance of Deliverables*",
+      "Business Documents"
+    ],
+    "correctAnswer": "Formal Acceptance of Deliverables",
+    "explanation": "These artifacts confirm that deliverables have been formally accepted and the project scope is complete."
+  },
+  //10
+  {
+    "scenario": "A QA engineer finds a bug and the development team fixes it so the function works correctly.",
+    "question": "This is an example of:",
+    "options": [
+      "Preventive Action",
+      "Corrective Action",
+      "Defect Repair*",
+      "Quality Control"
+    ],
+    "correctAnswer": "Defect Repair",
+    "explanation": "Defect repair is the activity of correcting a product flaw so it meets its requirements."
+  }
 ]
 
 export default quizQuestions;
