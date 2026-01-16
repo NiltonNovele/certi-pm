@@ -1756,9 +1756,9 @@ const quizQuestions: Question[] = [
     "A → B → C → D"
   ],
   correctAnswer:
-    "A → C → E",
+    "A → B → C → D",
   explanation:
-    "A → C → E = 14 days, the longest duration and therefore the critical path."
+    "A → C → E = 15 days, the longest duration and therefore the critical path."
 },
 { 
   scenario: "You are leading a clinical trial project for a new medication. Tension has developed between the data management team and the clinical operations team, and conflict has become visible and escalated.", 
@@ -2761,7 +2761,7 @@ const quizQuestions: Question[] = [
     "options": [
       "Interactive communication",
       "Pull communication",
-      "Push communication*",
+      "Push communication",
       "Lateral communication"
     ],
     "correctAnswer": "Push communication",
@@ -2774,7 +2774,7 @@ const quizQuestions: Question[] = [
     "options": [
       "Send a detailed email",
       "Post the query on the project portal",
-      "Call the engineer on the phone for a direct conversation*",
+      "Call the engineer on the phone for a direct conversation",
       "Issue a formal RFI"
     ],
     "correctAnswer": "Call the engineer on the phone for a direct conversation",
@@ -2787,7 +2787,7 @@ const quizQuestions: Question[] = [
     "options": [
       "Push communication via scheduled emails",
       "Interactive communication through workshops",
-      "Pull communication via a dedicated PMO knowledge management system*",
+      "Pull communication via a dedicated PMO knowledge management system",
       "Push communication through charter links"
     ],
     "correctAnswer": "Pull communication via a dedicated PMO knowledge management system",
@@ -2799,7 +2799,7 @@ const quizQuestions: Question[] = [
     "question": "This initial release is best described as a:",
     "options": [
       "Minimum Business Increment (MBI)",
-      "Minimum Viable Product (MVP)*",
+      "Minimum Viable Product (MVP)",
       "Prototype",
       "Project Deliverable"
     ],
@@ -2813,7 +2813,7 @@ const quizQuestions: Question[] = [
     "options": [
       "Minimum Marketable Feature (MMF)",
       "Minimum Viable Product (MVP)",
-      "Minimum Business Increment (MBI)*",
+      "Minimum Business Increment (MBI)",
       "Work Package"
     ],
     "correctAnswer": "Minimum Business Increment (MBI)",
@@ -2827,7 +2827,7 @@ const quizQuestions: Question[] = [
       "Developing a new MBI",
       "Enhancing the MVP",
       "Creating a prototype",
-      "Performing defect repair on the MVP*"
+      "Performing defect repair on the MVP"
     ],
     "correctAnswer": "Performing defect repair on the MVP",
     "explanation": "The work corrects defects in existing functionality rather than adding new features."
@@ -2839,7 +2839,7 @@ const quizQuestions: Question[] = [
     "options": [
       "Project Deliverable",
       "Project Management Plan",
-      "Project Artifact*",
+      "Project Artifact",
       "Project Document"
     ],
     "correctAnswer": "Project Artifact",
@@ -2853,7 +2853,7 @@ const quizQuestions: Question[] = [
       "Project Deliverable",
       "Organizational Process Asset",
       "Work Performance Data",
-      "Project Document*"
+      "Project Document"
     ],
     "correctAnswer": "Project Document",
     "explanation": "The source file is a working project document used to create the final deliverable."
@@ -2865,7 +2865,7 @@ const quizQuestions: Question[] = [
     "options": [
       "Project Management Plan",
       "Final Product and Project Documents",
-      "Formal Acceptance of Deliverables*",
+      "Formal Acceptance of Deliverables",
       "Business Documents"
     ],
     "correctAnswer": "Formal Acceptance of Deliverables",
@@ -2878,7 +2878,7 @@ const quizQuestions: Question[] = [
     "options": [
       "Preventive Action",
       "Corrective Action",
-      "Defect Repair*",
+      "Defect Repair",
       "Quality Control"
     ],
     "correctAnswer": "Defect Repair",
