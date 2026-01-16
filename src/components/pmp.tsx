@@ -267,7 +267,7 @@ const ProjectQuiz: React.FC = () => {
                       <span
                         className={
                           answers[i] === q.correctAnswer
-                            ? "text-green-600"
+                            ? "text-red-600"
                             : "text-red-600"
                         }
                       >
