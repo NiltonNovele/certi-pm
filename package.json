@@ -31,6 +31,7 @@
     "mongoose": "^8.19.2",
     "multer": "^2.0.2",
     "mysql2": "^3.15.1",
+    "nodemailer": "^7.0.12",
     "openai": "^5.23.1",
     "posthog-js": "^1.318.1",
     "react": "^18.3.1",
