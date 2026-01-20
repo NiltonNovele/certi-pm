@@ -1758,7 +1758,7 @@ const quizQuestions: Question[] = [
   correctAnswer:
     "A → B → C → D",
   explanation:
-    "A → C → E = 15 days, the longest duration and therefore the critical path."
+    "A → B → C → D = 15 days, the longest duration and therefore the critical path."
 },
 { 
   scenario: "You are leading a clinical trial project for a new medication. Tension has developed between the data management team and the clinical operations team, and conflict has become visible and escalated.", 
