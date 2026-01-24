@@ -27,7 +27,7 @@ const courses: Course[] = [
     description:
       "Prepare for your PMP® certification with in-depth coverage of PMBOK® Guide 7th Edition, Agile and Hybrid approaches.",
     instructor: "Patricio Inacio",
-    price: 10499,
+    price: 10999,
     originalPrice: 17999,
     promotion: "Black November",
     coverImage: "/pmp.webp",
@@ -48,7 +48,7 @@ const courses: Course[] = [
     description:
       "Build strong foundations in project management and prepare for the CAPM® exam with confidence.",
     instructor: "Patricio Inacio",
-    price: 7999,
+    price: 8499,
     originalPrice: 15999,
     promotion: "Black November",
     coverImage: "/capm.png",
@@ -69,7 +69,7 @@ const courses: Course[] = [
     description:
       "Master Agile and Scrum principles and prepare for Scrum Master certification.",
     instructor: "Patricio Inacio",
-    price: 6999,
+    price: 7499,
     originalPrice: 12999,
     promotion: "Black November",
     coverImage: "/scrum.png",
