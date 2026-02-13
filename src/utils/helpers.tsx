@@ -1,5 +1,3 @@
-// src/utils/helpers.ts
-
 import { UniversityResult, StudyProfile } from "../types";
 
 /**
