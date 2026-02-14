@@ -23,6 +23,7 @@ const ConsultancyAdmin = () => {
     try {
       const res = await axios.get(
         "https://api.certipm.com/api/consultancy"
+        // "http://localhost:5006/api/consultancy"
       );
       setRequests(Array.isArray(res.data) ? res.data : []);
     } catch {

@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 
+// Admin Tests
+import consultancyRoutes from "./routes/consultancy.js";
+// ...
+
 dotenv.config();
 
 const app = express();
@@ -15,6 +19,9 @@ const PORT = process.env.PORT || 5006;
 app.use(cors({
   origin: [
     "http://localhost:3000",
+    // Admin Tests
+    "http://localhost:5173",
+    // ...
     "https://certi-pm.vercel.app",
     "https://www.certipm.com",
     "https://certipm.com"
@@ -23,6 +30,10 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 app.use(express.json());
+
+// Admin Tests
+app.use("/api/consultancy", consultancyRoutes);
+// ...
 
 /* -------------------
    MongoDB Connections
@@ -40,11 +51,11 @@ mongoose.connect(process.env.MONGO_URI, {
   serverSelectionTimeoutMS: 10000,
   tls: true,
 })
-.then(() => console.log("✅ Connected to main MongoDB"))
-.catch(err => {
-  console.error("❌ Main MongoDB connection failed:", err.message);
-  process.exit(1);
-});
+  .then(() => console.log("✅ Connected to main MongoDB"))
+  .catch(err => {
+    console.error("❌ Main MongoDB connection failed:", err.message);
+    process.exit(1);
+  });
 
 // Vacancies DB (SEPARATE CONNECTION)
 const vacanciesConnection = mongoose.createConnection(

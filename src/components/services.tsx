@@ -115,7 +115,10 @@ const Services: React.FC = () => {
     e.preventDefault();
 
     try {
-      await fetch("https://api.certipm.com/api/consultancy", {
+      await fetch(
+        "https://api.certipm.com/api/consultancy",
+        // "http://localhost:5006/api/consultancy"
+        {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
