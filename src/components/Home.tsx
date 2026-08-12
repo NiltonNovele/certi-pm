@@ -460,11 +460,19 @@ const Home = () => {
               />
 
               <div className="flex flex-wrap items-center justify-center gap-4">
+                <a
+                      href="https://www.credly.com/badges/d061652a-dea3-4ea1-aae2-fb1e16207c46/linked_in_profile"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Verify Authorized Training Instructor badge on Credly"
+                      className="group flex h-24 items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-white transition hover:-translate-y-0.5 hover:border-[#8b0d0d] hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+                    >
                 <img
                   src="/inst.jpeg"
                   alt="PMI ATI Badge"
                   className="h-24 w-24 rounded-xl object-contain shadow sm:h-28 sm:w-28"
                 />
+                </a>
                 <img
                   src="/safe.jpg"
                   alt="SAFe Badge"
