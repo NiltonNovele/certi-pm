@@ -530,32 +530,6 @@ const Choose: React.FC = () => {
                               </span>
                             </span>
                           </div>
-
-                          {/* FULL QUIZ PRICE */}
-
-                          {quiz.purchaseFullQuiz && (
-                            <div className="mt-5 rounded-2xl bg-red-50 p-4">
-                              <div className="flex items-center justify-between gap-3">
-                                <div>
-                                  <p className="text-xs font-semibold uppercase tracking-wider text-red-700">
-                                    Full Quiz
-                                  </p>
-
-                                  <p className="mt-1 text-lg font-bold text-gray-900">
-                                    {quiz.price.toLocaleString()}{" "}
-                                    MT
-                                  </p>
-                                </div>
-
-                                {quiz.originalPrice && (
-                                  <span className="text-sm text-gray-400 line-through">
-                                    {quiz.originalPrice.toLocaleString()}{" "}
-                                    MT
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          )}
                         </div>
 
                         {/* CARD BUTTON */}
