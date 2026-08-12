@@ -105,7 +105,7 @@ const quizzes: QuizChoice[] = [
     redirectUrl: "/new-pmp-complete",
     promotion: "Full Quiz",
     category: "PMP",
-    purchaseFullQuiz: true,
+    purchaseFullQuiz: false,
     promoAccess: false,
   },
 
