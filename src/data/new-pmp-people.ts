@@ -1960,6 +1960,216 @@ explanation:
 "When understanding of key project elements such as success criteria has drifted from what was originally documented, the project manager should proactively revisit this with stakeholders, clarify the discrepancy, and formally reconcile or update the documented criteria if a genuine change is warranted."
 },
 
+   {
+    scenario:
+      "Midway through a long-term project, external conditions change and alter key assumptions behind the original business case. While delivery remains on track, several stakeholders begin questioning whether the project still reflects the intended future state described in the original vision.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Adjust project objectives incrementally to reflect emerging stakeholder concerns.",
+      "Continue executing according to the approved plan while monitoring external changes closely.",
+      "Ask the sponsor to determine whether the original vision should remain valid.",
+      "Reassess the project vision with key stakeholders to confirm continued relevance and alignment.",
+    ],
+
+    correctAnswer:
+      "Reassess the project vision with key stakeholders to confirm continued relevance and alignment.",
+
+    explanation:
+      "Keeping the vision current requires validating that it still reflects strategic intent and future-state expectations. Reassessing the vision with stakeholders ensures continued alignment before execution decisions diverge further.",
+  },
+
+  {
+    scenario:
+      "A project manager is leading a cross-functional team delivering a sustainability-focused product. During a steering committee review, several stakeholders state that the project is “off track,” even though agreed-upon milestones are being met. In follow-up discussions, it becomes clear that different stakeholders are prioritizing different outcomes when judging success.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Facilitate a focused discussion to surface differing success assumptions and realign stakeholders on intended outcomes.",
+      "Ask the sponsor to restate the agreed-upon success criteria with the steering committee to address differing interpretations.",
+      "Update documented project objectives to reflect the various success perspectives raised by stakeholders.",
+      "Provide additional performance and benefits metrics to clarify the current project status more clearly overall.",
+    ],
+
+    correctAnswer:
+      "Facilitate a focused discussion to surface differing success assumptions and realign stakeholders on intended outcomes.",
+
+    explanation:
+      "The situation reflects differing assumptions about what constitutes success rather than a delivery performance issue. Facilitating a focused discussion enables the project manager to identify the root cause of the misunderstanding and realign stakeholders on intended outcomes before reinforcing or formalizing any interpretation.",
+  },
+
+  {
+    scenario:
+      "During a project planning workshop, two senior team members repeatedly disagree on task ownership and decision authority. Both cite different understandings of how responsibilities were defined at project initiation. The disagreement is beginning to affect collaboration.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Immediately facilitate a resolution discussion between the team members to align expectations around task ownership.",
+      "Explicitly clarify role definitions and decision authority to first accurately determine the underlying source of the conflict.",
+      "Adjust task assignments to reduce ambiguity and allow planning activities to continue temporarily.",
+      "Involve functional managers to support resolution of the disagreement collaboratively and early.",
+    ],
+
+    correctAnswer:
+      "Explicitly clarify role definitions and decision authority to first accurately determine the underlying source of the conflict.",
+
+    explanation:
+      "Before resolving the conflict, the project manager should identify its source. Explicitly clarifying roles and decision authority helps determine whether the conflict is structural, process-related, or interpersonal, which is essential before selecting an appropriate resolution approach.",
+  },
+
+  {
+    scenario:
+      "A conflict has emerged between a project team and a key external stakeholder regarding delivery priorities. The team views the issue as a workload and sequencing problem, while the stakeholder frames it as a lack of commitment and responsiveness. Tension is increasing, and communication is becoming defensive.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Analyze the broader context of the conflict to understand perspectives, constraints, and underlying drivers.",
+      "Facilitate a joint problem-solving session to agree on revised delivery priorities.",
+      "Ask the sponsor to intervene and reset expectations with the external stakeholder.",
+      "Emphasize adherence to the approved plan to reduce emotional escalation and any confusion risks early.",
+    ],
+
+    correctAnswer:
+      "Analyze the broader context of the conflict to understand perspectives, constraints, and underlying drivers.",
+
+    explanation:
+      "Managing conflicts effectively requires understanding the context in which the conflict occurs, including stakeholder perspectives, constraints, and perceptions. Analyzing the context helps the project manager distinguish between positional disagreement and deeper relational or expectation-based issues before selecting a resolution approach.",
+  },
+
+  {
+    scenario:
+      "After analyzing the context of an ongoing conflict between two teams, the project manager facilitates a discussion, and the parties agree on a specific approach to resolving the issue. A few days later, one team begins deviating from the agreed-upon actions, arguing that delivery pressure justifies a different approach.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Reassess the resolution approach according to current delivery pressure and execution constraints.",
+      "Allow limited deviations from the agreement to accommodate short-term delivery pressure.",
+      "Reinforce the agreed-upon resolution strategy and address the deviation directly with the team involved.",
+      "Escalate the deviation to senior management to enforce compliance with the agreement.",
+    ],
+
+    correctAnswer:
+      "Reinforce the agreed-upon resolution strategy and address the deviation directly with the team involved.",
+
+    explanation:
+      "Managing conflicts includes implementing and sustaining the agreed-upon resolution strategy. Reinforcing the agreed-upon approach and addressing deviations directly helps maintain trust, accountability, and consistency.",
+  },
+
+  {
+    scenario:
+      "Following several recent conflicts, the project manager notices that team members and external stakeholders handle disagreements inconsistently. Some escalate issues immediately, while others avoid raising concerns altogether. As a result, similar conflicts are handled differently across the project.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Ask the sponsor to define how conflicts should be escalated and resolved.",
+      "Encourage team members to resolve conflicts informally before raising them to the project level.",
+      "Address conflict situations individually as they arise to minimize disruption.",
+      "Communicate clear conflict management principles and expectations to both the team and stakeholders.",
+    ],
+
+    correctAnswer:
+      "Communicate clear conflict management principles and expectations to both the team and stakeholders.",
+
+    explanation:
+      "Managing conflicts effectively includes clearly communicating shared principles for how disagreements should be raised, discussed, and resolved. Establishing common expectations promotes consistency, fairness, and trust across the project environment.",
+  },
+
+  {
+    scenario:
+      "In a long-running project, the project manager observes that repeated interruptions, side conversations, and personal critiques often derail team meetings. Although no major conflict has escalated yet, these behaviors are creating tension and reducing trust within the team.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Establish and reinforce clear ground rules for respectful communication and meeting behavior.",
+      "Address disruptive behaviors only when they escalate into visible conflicts.",
+      "Allow the team to self-correct behaviors as collaboration matures over time.",
+      "Ask functional managers to intervene and enforce appropriate conduct early within meetings.",
+    ],
+
+    correctAnswer:
+      "Establish and reinforce clear ground rules for respectful communication and meeting behavior.",
+
+    explanation:
+      "Managing conflicts also means preventing escalation before it occurs. Establishing and reinforcing common ground rules promotes respectful interaction, psychological safety, and consistent expectations before conflicts intensify.",
+  },
+
+  {
+    scenario:
+      "A project manager joins a project where team members are experienced, but they work across multiple initiatives. Early execution issues show duplicated work and delayed decisions, even though the schedule and deliverables are clearly defined.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Ask functional managers to assign specific tasks to each team member for better coordination.",
+      "Clarify roles and responsibilities with the team to establish clear ownership and decision boundaries.",
+      "Update the project schedule and task assignments to reflect clearer ownership and dependencies.",
+      "Monitor team performance closely and address issues as they emerge proactively during execution.",
+    ],
+
+    correctAnswer:
+      "Clarify roles and responsibilities with the team to establish clear ownership and decision boundaries.",
+
+    explanation:
+      "Leading the project team includes establishing clear roles and responsibilities. Clarifying ownership and decision boundaries addresses the root cause of duplicated work and delayed decisions, enabling effective coordination across multiple initiatives.",
+  },
+
+  {
+    scenario:
+      "A project team with strong technical expertise frequently seeks approval from the project manager before making routine decisions. This behavior slows delivery and limits team ownership, even though expectations and objectives are clearly defined.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Define clearer decision escalation criteria to guide team actions and effectively reduce uncertainty.",
+      "Continue reviewing team decisions initially to ensure alignment with objectives and constraints.",
+      "Escalate recurring decision requests to functional managers to reinforce accountability expectations.",
+      "Encourage the team to make appropriate decisions within agreed-upon boundaries and provide support.",
+    ],
+
+    correctAnswer:
+      "Encourage the team to make appropriate decisions within agreed-upon boundaries and provide support.",
+
+    explanation:
+      "Empowering the team means enabling autonomy within clear boundaries. Encouraging appropriate decision-making while offering support increases ownership, confidence, and speed of delivery.",
+  },
+
+  {
+    scenario:
+      "A project manager is leading a team composed of highly experienced specialists and several newly assigned team members. The experienced members work independently, while newer members frequently seek guidance and reassurance. Delivery pressure is increasing.",
+
+    question:
+      "What should the project manager do?",
+
+    options: [
+      "Delegate leadership responsibilities to senior team members to support less experienced colleagues.",
+      "Apply a consistent leadership approach uniformly to all team members to ensure fairness and clarity.",
+      "Adapt leadership behaviors to provide direction to newer members while allowing autonomy.",
+      "Increase oversight of all team activities to reduce delivery risk and ensure consistency overall.",
+    ],
+
+    correctAnswer:
+      "Adapt leadership behaviors to provide direction to newer members while allowing autonomy.",
+
+    explanation:
+      "Determining an appropriate leadership style requires adapting behaviors based on team needs and context. Providing guidance to less experienced members while allowing autonomy for experienced specialists supports performance, engagement, and delivery under pressure.",
+  },
+
 {
 scenario:
 "A fully virtual team has been working together for several months primarily through text-based chat. The project manager notices that misunderstandings are becoming more frequent, and some team members have mentioned they aren't sure how their colleagues are really doing, professionally or personally.",
