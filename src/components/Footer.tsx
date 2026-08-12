@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Mail,
@@ -92,6 +93,7 @@ const Footer: React.FC<FooterProps> = () => {
       <footer className="mt-20 border-t border-gray-200 bg-[#f8f7f5] text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:text-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+
             {/* Brand */}
             <div className="lg:col-span-5">
               <div className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900 sm:p-7">
@@ -104,6 +106,7 @@ const Footer: React.FC<FooterProps> = () => {
                     <h3 className="text-xl font-extrabold text-[#7a0b0b] dark:text-white">
                       CertiPM
                     </h3>
+
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       Project Management Training & Certification
                     </p>
@@ -119,7 +122,10 @@ const Footer: React.FC<FooterProps> = () => {
                 <div className="mt-6 rounded-2xl border border-red-100 bg-red-50/70 p-5 dark:border-red-950/40 dark:bg-red-950/10">
                   <div className="flex items-center gap-2 text-[#7a0b0d] dark:text-red-300">
                     <ShieldCheck className="h-5 w-5" />
-                    <p className="text-sm font-semibold">Authorized Training Partner</p>
+
+                    <p className="text-sm font-semibold">
+                      Authorized Training Partner
+                    </p>
                   </div>
 
                   <p className="mt-3 text-sm leading-7 text-gray-700 dark:text-gray-400">
@@ -129,6 +135,8 @@ const Footer: React.FC<FooterProps> = () => {
                   </p>
 
                   <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+                    {/* PMI Authorized Training Partner Badge */}
                     <button
                       type="button"
                       onClick={() => setModalImage("/atp.jpeg")}
@@ -141,17 +149,20 @@ const Footer: React.FC<FooterProps> = () => {
                       />
                     </button>
 
-                    <button
-                      type="button"
-                      onClick={() => setModalImage("/inst.jpeg")}
+                    {/* Authorized Training Instructor Badge - Clickable Credly Link */}
+                    <a
+                      href="https://www.credly.com/badges/d061652a-dea3-4ea1-aae2-fb1e16207c46/linked_in_profile"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Verify Authorized Training Instructor badge on Credly"
                       className="group flex h-24 items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-white transition hover:-translate-y-0.5 hover:border-[#8b0d0d] hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
                     >
                       <img
                         src="/inst.jpeg"
-                        alt="Authorized Training Instructor"
+                        alt="Authorized Training Instructor - Verify on Credly"
                         className="max-h-16 object-contain transition group-hover:scale-[1.02]"
                       />
-                    </button>
+                    </a>
                   </div>
 
                   <p className="mt-4 text-xs text-gray-600 dark:text-gray-400">
@@ -159,6 +170,10 @@ const Footer: React.FC<FooterProps> = () => {
                     <span className="font-semibold text-gray-800 dark:text-gray-200">
                       Patricio Inacio
                     </span>
+                  </p>
+
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-500">
+                    Click the instructor badge to verify the credential on Credly.
                   </p>
                 </div>
               </div>
@@ -170,6 +185,7 @@ const Footer: React.FC<FooterProps> = () => {
                 <h3 className="text-lg font-bold text-[#7a0b0b] dark:text-white">
                   Contact
                 </h3>
+
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Reach out to us directly through the channels below.
                 </p>
@@ -177,8 +193,12 @@ const Footer: React.FC<FooterProps> = () => {
                 <ul className="mt-6 space-y-4">
                   {contactItems.map((item) => {
                     const Icon = item.icon;
+
                     return (
-                      <li key={item.label} className="flex items-start gap-3">
+                      <li
+                        key={item.label}
+                        className="flex items-start gap-3"
+                      >
                         <div className="mt-0.5 rounded-xl bg-[#8b0d0d]/10 p-2 text-[#8b0d0d]">
                           <Icon className="h-4 w-4" />
                         </div>
@@ -187,9 +207,12 @@ const Footer: React.FC<FooterProps> = () => {
                           <p className="text-sm font-medium text-gray-900 dark:text-white">
                             {item.label}
                           </p>
+
                           <a
                             href={item.href}
-                            target={item.label === "Location" ? "_blank" : undefined}
+                            target={
+                              item.label === "Location" ? "_blank" : undefined
+                            }
                             rel={
                               item.label === "Location"
                                 ? "noopener noreferrer"
@@ -213,6 +236,7 @@ const Footer: React.FC<FooterProps> = () => {
                 <h3 className="text-lg font-bold text-[#7a0b0b] dark:text-white">
                   Social Media
                 </h3>
+
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Follow Project Direct and stay connected with our latest updates.
                 </p>
@@ -220,6 +244,7 @@ const Footer: React.FC<FooterProps> = () => {
                 <div className="mt-6 flex flex-wrap gap-3">
                   {socialLinks.map((item) => {
                     const Icon = item.icon;
+
                     return (
                       <a
                         key={item.label}
