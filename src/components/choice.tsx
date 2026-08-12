@@ -26,6 +26,19 @@ interface QuizChoice {
   category?: string;
   promoAccess?: boolean;
   purchaseFullQuiz?: boolean;
+  theme: {
+    button: string;
+    buttonHover: string;
+    iconBg: string;
+    iconColor: string;
+    checkColor: string;
+    borderHover: string;
+    badgeBg: string;
+    badgeText: string;
+    categoryBg: string;
+    categoryText: string;
+    ring: string;
+  };
 }
 
 /*
@@ -42,13 +55,8 @@ const PROMO_ACCESS_KEY = "certipm_promo_access";
 
 /*
 |--------------------------------------------------------------------------
-| IMPORTANT
+| PROMO QUIZZES
 |--------------------------------------------------------------------------
-|
-| These are the quizzes unlocked by the promo code.
-|
-| "new-pmp-complete" is deliberately NOT included.
-|
 */
 
 const PROMO_QUIZ_IDS = [
@@ -63,6 +71,9 @@ const PROMO_QUIZ_IDS = [
 |--------------------------------------------------------------------------
 | QUIZ LIST
 |--------------------------------------------------------------------------
+|
+| Each quiz has its own PMI-inspired visual theme.
+|
 */
 
 const quizzes: QuizChoice[] = [
@@ -78,6 +89,20 @@ const quizzes: QuizChoice[] = [
     promotion: "Premium Access",
     category: "Foundation",
     promoAccess: true,
+
+    theme: {
+      button: "bg-[#0070C0]",
+      buttonHover: "hover:bg-[#005A9C]",
+      iconBg: "bg-[#E6F4FB]",
+      iconColor: "text-[#0070C0]",
+      checkColor: "text-[#0070C0]",
+      borderHover: "hover:border-[#0070C0]",
+      badgeBg: "bg-[#0070C0]",
+      badgeText: "text-white",
+      categoryBg: "bg-[#E6F4FB]",
+      categoryText: "text-[#00639C]",
+      ring: "focus:ring-[#0070C0]/20",
+    },
   },
 
   {
@@ -92,6 +117,20 @@ const quizzes: QuizChoice[] = [
     promotion: "Premium Access",
     category: "Agile",
     promoAccess: true,
+
+    theme: {
+      button: "bg-[#6B46C1]",
+      buttonHover: "hover:bg-[#553399]",
+      iconBg: "bg-[#F1ECFA]",
+      iconColor: "text-[#6B46C1]",
+      checkColor: "text-[#6B46C1]",
+      borderHover: "hover:border-[#6B46C1]",
+      badgeBg: "bg-[#6B46C1]",
+      badgeText: "text-white",
+      categoryBg: "bg-[#F1ECFA]",
+      categoryText: "text-[#5B36A8]",
+      ring: "focus:ring-[#6B46C1]/20",
+    },
   },
 
   {
@@ -107,6 +146,20 @@ const quizzes: QuizChoice[] = [
     category: "PMP",
     purchaseFullQuiz: false,
     promoAccess: false,
+
+    theme: {
+      button: "bg-[#F58220]",
+      buttonHover: "hover:bg-[#D96B0B]",
+      iconBg: "bg-[#FFF2E7]",
+      iconColor: "text-[#F58220]",
+      checkColor: "text-[#F58220]",
+      borderHover: "hover:border-[#F58220]",
+      badgeBg: "bg-[#F58220]",
+      badgeText: "text-white",
+      categoryBg: "bg-[#FFF2E7]",
+      categoryText: "text-[#C75D09]",
+      ring: "focus:ring-[#F58220]/20",
+    },
   },
 
   {
@@ -120,6 +173,20 @@ const quizzes: QuizChoice[] = [
     promotion: "Promo Access",
     category: "PMP",
     promoAccess: true,
+
+    theme: {
+      button: "bg-[#159A9C]",
+      buttonHover: "hover:bg-[#107779]",
+      iconBg: "bg-[#E7F7F7]",
+      iconColor: "text-[#159A9C]",
+      checkColor: "text-[#159A9C]",
+      borderHover: "hover:border-[#159A9C]",
+      badgeBg: "bg-[#159A9C]",
+      badgeText: "text-white",
+      categoryBg: "bg-[#E7F7F7]",
+      categoryText: "text-[#11777A]",
+      ring: "focus:ring-[#159A9C]/20",
+    },
   },
 
   {
@@ -133,6 +200,20 @@ const quizzes: QuizChoice[] = [
     promotion: "Promo Access",
     category: "PMP",
     promoAccess: true,
+
+    theme: {
+      button: "bg-[#9A6A3A]",
+      buttonHover: "hover:bg-[#7A512A]",
+      iconBg: "bg-[#F6EEE6]",
+      iconColor: "text-[#9A6A3A]",
+      checkColor: "text-[#9A6A3A]",
+      borderHover: "hover:border-[#9A6A3A]",
+      badgeBg: "bg-[#9A6A3A]",
+      badgeText: "text-white",
+      categoryBg: "bg-[#F6EEE6]",
+      categoryText: "text-[#7A512A]",
+      ring: "focus:ring-[#9A6A3A]/20",
+    },
   },
 
   {
@@ -146,84 +227,22 @@ const quizzes: QuizChoice[] = [
     promotion: "Promo Access",
     category: "PMP",
     promoAccess: true,
+
+    theme: {
+      button: "bg-[#1E4D8F]",
+      buttonHover: "hover:bg-[#163A6D]",
+      iconBg: "bg-[#EAF1FA]",
+      iconColor: "text-[#1E4D8F]",
+      checkColor: "text-[#1E4D8F]",
+      borderHover: "hover:border-[#1E4D8F]",
+      badgeBg: "bg-[#1E4D8F]",
+      badgeText: "text-white",
+      categoryBg: "bg-[#EAF1FA]",
+      categoryText: "text-[#1E4D8F]",
+      ring: "focus:ring-[#1E4D8F]/20",
+    },
   },
 ];
-
-/*
-|--------------------------------------------------------------------------
-| CARD THEMES
-|--------------------------------------------------------------------------
-|
-| Each quiz receives its own visual identity.
-|
-| The category / promotion badges remain unchanged.
-|
-*/
-
-const cardThemes: Record<
-  string,
-  {
-    iconBg: string;
-    iconText: string;
-    checkText: string;
-    buttonBg: string;
-    buttonHover: string;
-  }
-> = {
-  capm: {
-    // PMI-inspired orange
-    iconBg: "bg-orange-50",
-    iconText: "text-orange-600",
-    checkText: "text-orange-600",
-    buttonBg: "bg-orange-600",
-    buttonHover: "hover:bg-orange-700",
-  },
-
-  scrum: {
-    // PMI-inspired purple
-    iconBg: "bg-purple-50",
-    iconText: "text-purple-600",
-    checkText: "text-purple-600",
-    buttonBg: "bg-purple-600",
-    buttonHover: "hover:bg-purple-700",
-  },
-
-  "new-pmp-complete": {
-    // PMI-inspired deep blue
-    iconBg: "bg-blue-50",
-    iconText: "text-blue-600",
-    checkText: "text-blue-600",
-    buttonBg: "bg-blue-600",
-    buttonHover: "hover:bg-blue-700",
-  },
-
-  "new-pmp-people": {
-    // Light blue / cyan
-    iconBg: "bg-sky-50",
-    iconText: "text-sky-600",
-    checkText: "text-sky-600",
-    buttonBg: "bg-sky-600",
-    buttonHover: "hover:bg-sky-700",
-  },
-
-  "new-pmp-process": {
-    // Brown / bronze
-    iconBg: "bg-amber-50",
-    iconText: "text-amber-700",
-    checkText: "text-amber-700",
-    buttonBg: "bg-amber-700",
-    buttonHover: "hover:bg-amber-800",
-  },
-
-  "new-pmp-business-environment": {
-    // Teal / green-blue
-    iconBg: "bg-teal-50",
-    iconText: "text-teal-600",
-    checkText: "text-teal-600",
-    buttonBg: "bg-teal-600",
-    buttonHover: "hover:bg-teal-700",
-  },
-};
 
 /*
 |--------------------------------------------------------------------------
@@ -282,11 +301,6 @@ const Choose: React.FC = () => {
   |--------------------------------------------------------------------------
   | PURCHASE FULL QUIZ
   |--------------------------------------------------------------------------
-  |
-  | Intentionally does nothing.
-  |
-  | The button remains visible exactly as requested.
-  |
   */
 
   const handlePurchaseFullQuiz = () => {
@@ -333,12 +347,13 @@ const Choose: React.FC = () => {
 
       /*
       |--------------------------------------------------------------------------
-      | VERIFY THAT ACCESS WAS ACTUALLY SAVED
+      | VERIFY ACCESS
       |--------------------------------------------------------------------------
       */
 
-      const savedAccess =
-        sessionStorage.getItem(PROMO_ACCESS_KEY);
+      const savedAccess = sessionStorage.getItem(
+        PROMO_ACCESS_KEY
+      );
 
       if (!savedAccess) {
         setPromoError(
@@ -380,6 +395,7 @@ const Choose: React.FC = () => {
       <SignedIn>
         <div className="min-h-screen bg-[#f8f7f5] text-gray-900">
           <section className="relative overflow-hidden">
+
             {/* BACKGROUND */}
 
             <div className="pointer-events-none absolute inset-0">
@@ -391,6 +407,7 @@ const Choose: React.FC = () => {
             </div>
 
             <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+
               {/* HERO */}
 
               <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-12 lg:mb-16">
@@ -418,6 +435,7 @@ const Choose: React.FC = () => {
 
               <div className="mb-12 rounded-[24px] border border-red-100 bg-white p-5 shadow-xl sm:rounded-[28px] sm:p-8 lg:mb-16">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+
                   <div>
                     <div className="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-red-700 sm:text-xs">
                       <BadgePercent className="h-4 w-4" />
@@ -496,45 +514,46 @@ const Choose: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-                  {quizzes.map((quiz) => {
-                    /*
-                    |--------------------------------------------------------------------------
-                    | GET INDIVIDUAL CARD THEME
-                    |--------------------------------------------------------------------------
-                    */
 
-                    const theme =
-                      cardThemes[quiz.id] ||
-                      cardThemes["capm"];
+                  {quizzes.map((quiz) => {
+                    const theme = quiz.theme;
 
                     return (
                       <div
                         key={quiz.id}
-                        className="group relative flex h-full flex-col rounded-[24px] border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:rounded-[28px] sm:p-6"
+                        className={`group relative flex h-full flex-col rounded-[24px] border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:rounded-[28px] sm:p-6 ${theme.borderHover}`}
                       >
+
                         {/* CARD HEADER */}
 
                         <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+
                           {/* THEMED GRADUATION CAP */}
 
                           <div
-                            className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${theme.iconBg} ${theme.iconText}`}
+                            className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${theme.iconBg} ${theme.iconColor}`}
                           >
                             <GraduationCap className="h-5 w-5" />
                           </div>
 
-                          {/* CATEGORY / PROMOTION
-                              KEPT UNCHANGED */}
-
                           <div className="flex flex-wrap gap-2 sm:justify-end">
+
+                            {/* THEMED CATEGORY */}
+
                             {quiz.category && (
-                              <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
+                              <span
+                                className={`rounded-full px-3 py-1 text-xs font-semibold ${theme.categoryBg} ${theme.categoryText}`}
+                              >
                                 {quiz.category}
                               </span>
                             )}
 
+                            {/* THEMED PROMOTION */}
+
                             {quiz.promotion && (
-                              <span className="rounded-full bg-red-700 px-3 py-1 text-xs font-semibold text-white">
+                              <span
+                                className={`rounded-full px-3 py-1 text-xs font-semibold ${theme.badgeBg} ${theme.badgeText}`}
+                              >
                                 {quiz.promotion}
                               </span>
                             )}
@@ -556,7 +575,7 @@ const Choose: React.FC = () => {
 
                           <div className="mt-5 flex items-start gap-2 text-sm text-gray-500">
                             <CheckCircle2
-                              className={`mt-0.5 h-4 w-4 shrink-0 ${theme.checkText}`}
+                              className={`mt-0.5 h-4 w-4 shrink-0 ${theme.checkColor}`}
                             />
 
                             <span>
@@ -572,10 +591,8 @@ const Choose: React.FC = () => {
 
                         {quiz.purchaseFullQuiz ? (
                           <button
-                            onClick={
-                              handlePurchaseFullQuiz
-                            }
-                            className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold text-white transition ${theme.buttonBg} ${theme.buttonHover} sm:text-base`}
+                            onClick={handlePurchaseFullQuiz}
+                            className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold text-white transition ${theme.button} ${theme.buttonHover} sm:text-base`}
                           >
                             Purchase Full Quiz
                             <ArrowRight className="h-4 w-4" />
@@ -583,11 +600,9 @@ const Choose: React.FC = () => {
                         ) : (
                           <button
                             onClick={() =>
-                              handleRequestAccess(
-                                quiz
-                              )
+                              handleRequestAccess(quiz)
                             }
-                            className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold text-white transition ${theme.buttonBg} ${theme.buttonHover} sm:text-base`}
+                            className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold text-white transition ${theme.button} ${theme.buttonHover} sm:text-base`}
                           >
                             Request Access
                             <ArrowRight className="h-4 w-4" />
@@ -607,6 +622,7 @@ const Choose: React.FC = () => {
         {showPromoModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6 backdrop-blur-sm">
             <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-[24px] bg-white p-6 shadow-2xl sm:rounded-[28px] sm:p-8">
+
               {/* SUCCESS BADGE */}
 
               <div className="inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-green-700 sm:text-xs">
@@ -627,23 +643,37 @@ const Choose: React.FC = () => {
               {/* PROMO ACCESS QUIZZES */}
 
               <div className="mt-6 space-y-3">
-                {promoQuizzes.map((quiz) => (
-                  <button
-                    key={quiz.id}
-                    onClick={() => {
-                      setShowPromoModal(false);
+                {promoQuizzes.map((quiz) => {
+                  const theme = quiz.theme;
 
-                      navigate(quiz.redirectUrl);
-                    }}
-                    className="inline-flex w-full items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-left font-semibold text-gray-800 transition hover:border-red-200 hover:bg-red-50 hover:text-red-700"
-                  >
-                    <span className="min-w-0 flex-1">
-                      {quiz.title}
-                    </span>
+                  return (
+                    <button
+                      key={quiz.id}
+                      onClick={() => {
+                        setShowPromoModal(false);
+                        navigate(quiz.redirectUrl);
+                      }}
+                      className={`group inline-flex w-full items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-left font-semibold text-gray-800 transition hover:bg-gray-50 ${theme.borderHover}`}
+                    >
+                      <span className="flex min-w-0 flex-1 items-center gap-3">
 
-                    <ArrowRight className="h-4 w-4 shrink-0" />
-                  </button>
-                ))}
+                        <span
+                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${theme.iconBg} ${theme.iconColor}`}
+                        >
+                          <GraduationCap className="h-4 w-4" />
+                        </span>
+
+                        <span className="min-w-0 flex-1">
+                          {quiz.title}
+                        </span>
+                      </span>
+
+                      <ArrowRight
+                        className={`h-4 w-4 shrink-0 ${theme.iconColor}`}
+                      />
+                    </button>
+                  );
+                })}
               </div>
 
               {/* CLOSE */}
@@ -666,6 +696,7 @@ const Choose: React.FC = () => {
       <SignedOut>
         <div className="min-h-screen bg-[#f8f7f5] px-4 sm:px-6">
           <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center py-10 sm:py-12">
+
             <div className="mb-8 max-w-2xl text-center">
               <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-red-700 shadow-sm sm:text-xs">
                 <Sparkles className="h-4 w-4" />
@@ -696,3 +727,4 @@ const Choose: React.FC = () => {
 };
 
 export default Choose;
+
