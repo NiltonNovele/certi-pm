@@ -2047,7 +2047,7 @@ const quizQuestions: QuizQuestion[] = [
     ],
     "correctAnswer": "Assess and prioritize the combined impact of these external factors on the roadmap and pricing strategy",
     "explanation": "Assessing and prioritizing the combined impact of multiple external factors, rather than reacting to only one or ignoring them all, allows the product owner to make a well-informed, strategic decision about the roadmap and pricing."
-  },
+  }
 ];
 
 export default quizQuestions;
