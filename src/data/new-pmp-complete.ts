@@ -288,7 +288,7 @@ const quizQuestions: QuizQuestion[] = [
       "The chart is not reliable, since variance naturally fluctuates across project phases",
       "There is no concern, since the variance returned to acceptable levels in Execution Phase 3",
     ],
-    image: "/quiz-images/pmp-complete/question-22.png",
+    image: "/question-22.png",
     correctAnswer: "The defined escalation threshold was not followed when it was clearly triggered in Execution Phase 2",
     explanation: "A variance clearly exceeding the defined 10% threshold in Execution Phase 2 should have triggered formal escalation regardless of later improvement; the absence of any escalation mention indicates the governance policy was not followed, which is a genuine concern requiring investigation, not dismissal.",
   },
@@ -909,7 +909,7 @@ const quizQuestions: QuizQuestion[] = [
     ],
     "correctAnswer": "Explain that averaging masks the Week 3 overload, which still requires rebalancing regardless of the average",
     "explanation": "Averaging across weeks masks a real, concentrated overload in a specific week; the Week 3 spike still poses a genuine burnout and quality risk regardless of the overall average, making rebalancing necessary rather than accepting the average as sufficient reassurance.",
-    "image": "/quiz-images/pmp-complete/question-70.png"
+    "image": "/question-70.png"
   },
   {
     "scenario": "",
@@ -1164,7 +1164,7 @@ const quizQuestions: QuizQuestion[] = [
     ],
     "correctAnswer": "Reassess Stakeholder A's power rating given the reporting line change, since power may now be understated",
     "explanation": "A structural change like a new reporting line is a concrete signal that power may be understated and warrants reassessment; jumping straight to full reclassification without analysis, ignoring the change, or removal are all premature or unjustified.",
-    "image": "/quiz-images/pmp-complete/question-90.png"
+    "image": "/question-90.png"
   },
   {
     "scenario": "",
@@ -1596,7 +1596,7 @@ const quizQuestions: QuizQuestion[] = [
     ],
     "correctAnswer": "Start-B-D-End",
     "explanation": "Path durations: Start-A-D-End = 5+6=11; Start-B-D-End = 8+6=14; Start-B-E- End = 8+3=11; Start-C-E-End = 4+3=7. The longest path, Start-B-D-End at 14 days, is the critical path, since it determines the minimum possible project duration.",
-    "image": "/quiz-images/pmp-complete/question-123.png"
+    "image": "/question-123.png"
   },
   {
     "scenario": "",
@@ -1753,7 +1753,7 @@ const quizQuestions: QuizQuestion[] = [
     ],
     "correctAnswer": "Investigate whether the reporting cadence change is driving the recovery, and reinforce if confirmed",
     "explanation": "A recovery coinciding with a specific change warrants investigation to confirm causation before reinforcing it; discontinuing tracking, reverting the change that may be helping, or taking no action based only on the threshold all risk losing a genuine improvement.",
-    "image": "/quiz-images/pmp-complete/question-136.png"
+    "image": "/question-136.png"
   },
   {
     "scenario": "",
@@ -2021,7 +2021,7 @@ const quizQuestions: QuizQuestion[] = [
       "Explain that a temporary plateau partway through a typical S-curve is common and does not by itself indicate failure"
     ],
     correctAnswer: "Explain that a temporary plateau partway through a typical S-curve is common and does not by itself indicate failure",
-    image: "/quiz-images/pmp-complete/question-156.png",
+    image: "/question-156.png",
     explanation: "A brief plateau partway through an otherwise rising S-curve is a common, expected feature of adoption patterns as the more cautious middle-majority group begins adopting more slowly than early adopters; it does not, by itself, indicate initiative failure, making abandonment or a full restart unwarranted overreactions."
   },
   {
@@ -2345,7 +2345,7 @@ const quizQuestions: QuizQuestion[] = [
       "Agree with equal allocation, since all six factors are formally part of the same PESTLE assessment"
     ],
     correctAnswer: "Recommend allocating monitoring resources proportional to each factor's assessed likelihood and impact, prioritizing Political",
-    image: "/quiz-images/pmp-complete/question-180.png",
+    image: "/question-180.png",
     explanation: "Monitoring effort should be proportional to each factor's assessed exposure; the Political factor's high likelihood and high impact rating warrants disproportionately more attention than the Legal factor's medium/low rating, making equal allocation, complete removal of a still-relevant factor, or an overly narrow single-factor focus all suboptimal."
   }
 ];
