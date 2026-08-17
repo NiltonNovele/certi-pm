@@ -2468,7 +2468,7 @@ const quizQuestions: QuizQuestion[] = [
     question:
       "What should the Scrum master do?",
 
-    image: "/quiz-images/question-160.png",
+    image: "/question-160.png",
 
     options: [
       "Only ISS-104 requires attention, since it has the highest number of days open",
@@ -2540,7 +2540,7 @@ const quizQuestions: QuizQuestion[] = [
     question:
       "What does this pattern typically suggest about the health and trajectory of the rollout?",
 
-    image: "/quiz-images/question-163.png",
+    image: "/question-163.png",
 
     options: [
       "The chart indicates a data collection error, since adoption cannot behave this way",
@@ -2563,7 +2563,7 @@ const quizQuestions: QuizQuestion[] = [
     question:
       "Which single external factor represents the greatest combined exposure for the project?",
 
-    image: "/quiz-images/question-164.png",
+    image: "/question-164.png",
 
     options: [
       "The political factor, rated high likelihood and high impact",
@@ -2628,7 +2628,7 @@ const quizQuestions: QuizQuestion[] = [
     question:
       "What does the chart suggest?",
 
-    image: "/quiz-images/question-167.png",
+    image: "/question-167.png",
 
     options: [
       "The team should stop submitting any new change requests until the backlog clears",
@@ -2672,7 +2672,7 @@ const quizQuestions: QuizQuestion[] = [
     question:
       "Which risk requires the most urgent attention and highest priority for response planning?",
 
-    image: "/quiz-images/question-169.png",
+    image: "/question-169.png",
 
     options: [
       "R3, since it is positioned near the center of the matrix",
