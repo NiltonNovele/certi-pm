@@ -15,6 +15,7 @@ import Enquiry from "./components/Contacto";
 import ProjectQuiz from "./components/pmp";
 import Pmpeople from "./components/new-pmp-people";
 import Pmpbusiness from "./components/new-pmp-business";
+import PmpComplete from "./components/new-pmp-complete";
 import Pmprocess from "./components/new-pmp-process";
 import Terms from "./components/terms";
 import axios from "axios";
@@ -94,7 +95,8 @@ function App() {
             <Route path="/scrum" element={<SCRUMQuiz />} />
             <Route path="/new-pmp-people" element={<Pmpeople />} />
             <Route path="/new-pmp-business" element={<Pmpbusiness />} />
-            <Route path="/new-pmp-process" element={<Pmprocess />} />
+            <Route path="/new-pmp-process" element={<Pmprocess />} /> 
+            <Route path="/new-pmp-complete" element={<PmpComplete />} />
 
             <Route path="/choice" element={<Choose />} />
             <Route path="/services" element={<Services />} />
