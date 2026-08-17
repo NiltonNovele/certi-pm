@@ -2,7 +2,13 @@ export interface QuizQuestion {
   scenario: string;
   question: string;
   options: string[];
-  correctAnswer: string;
+
+  answerType?: "single" | "multiple";
+
+  correctAnswer: string | string[];
+
+  image?: string;
+
   explanation: string;
 }
 
