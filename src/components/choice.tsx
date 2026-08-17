@@ -64,7 +64,7 @@ const quizzes: QuizChoice[] = [
   },
   {
     id: "new-pmp-complete",
-    title: "New PMP Practice Quiz - Complete",
+    title: "PMP Practice Quiz - Complete",
     description:
       "A full-length PMP practice quiz aligned with the latest PMI-style coverage. Test your knowledge across the complete PMP exam framework with a comprehensive practice experience.",
     instructor: "Patricio Inacio",
@@ -78,7 +78,7 @@ const quizzes: QuizChoice[] = [
   },
   {
     id: "new-pmp-people",
-    title: "New PMP Practice Quiz - People",
+    title: "PMP Practice Quiz - People",
     description:
       "Focused PMP practice quiz covering people, leadership, team dynamics, and stakeholder engagement.",
     instructor: "Patricio Inacio",
@@ -90,7 +90,7 @@ const quizzes: QuizChoice[] = [
   },
   {
     id: "new-pmp-process",
-    title: "New PMP Practice Quiz - Process",
+    title: "PMP Practice Quiz - Process",
     description:
       "Targeted PMP practice quiz focused on process, delivery, planning, risk, and execution.",
     instructor: "Patricio Inacio",
@@ -102,7 +102,7 @@ const quizzes: QuizChoice[] = [
   },
   {
     id: "new-pmp-business-environment",
-    title: "New PMP Practice Quiz - Business Environment",
+    title: "PMP Practice Quiz - Business Environment",
     description:
       "A focused PMP practice quiz covering business environment, compliance, organizational strategy, and value delivery.",
     instructor: "Patricio Inacio",
