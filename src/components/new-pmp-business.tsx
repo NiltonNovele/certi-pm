@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+
 import {
   BadgeCheck,
   Info,
@@ -17,11 +18,13 @@ import {
   Home,
   RotateCcw,
 } from "lucide-react";
+
 import {
   SignedIn,
   SignedOut,
   SignIn,
 } from "@clerk/clerk-react";
+
 import { useNavigate } from "react-router-dom";
 
 import quizQuestions from "../data/new-pmp-business";
@@ -39,9 +42,6 @@ const QUIZ_TIME_SECONDS = QUIZ_TIME_MINUTES * 60;
 |--------------------------------------------------------------------------
 | PROMO CONFIGURATION
 |--------------------------------------------------------------------------
-|
-| These values MUST match the values used in Choose.tsx.
-|
 */
 
 const PROMO_ACCESS_KEY = "certipm_promo_access";
@@ -52,13 +52,52 @@ const QUIZ_ID = "new-pmp-business-environment";
 |--------------------------------------------------------------------------
 | TYPES
 |--------------------------------------------------------------------------
+|
+| IMPORTANT:
+|
+| Existing questions can continue using:
+|
+| correctAnswer: "Answer"
+|
+| New multiple-answer questions can use:
+|
+| answerType: "multiple"
+| correctAnswer: ["Answer A", "Answer B"]
+|
+| Existing questions do NOT need to be changed.
+|
 */
 
 interface QuizQuestion {
   scenario: string;
   question: string;
   options: string[];
-  correctAnswer: string;
+
+  /*
+   * Optional.
+   * If omitted, the question is treated as single-answer.
+   */
+  answerType?: "single" | "multiple";
+
+  /*
+   * Supports BOTH:
+   *
+   * correctAnswer: "Answer"
+   *
+   * and:
+   *
+   * correctAnswer: ["Answer A", "Answer B"]
+   */
+  correctAnswer: string | string[];
+
+  /*
+   * Optional image.
+   *
+   * Example:
+   * image: "/quiz-images/question-10.png"
+   */
+  image?: string;
+
   explanation: string;
 }
 
@@ -85,8 +124,20 @@ const Pmpbusiness: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] =
     useState(0);
 
-  const [answers, setAnswers] = useState<string[]>(
-    () => Array(quizQuestions.length).fill("")
+  /*
+   * Each question now stores an array internally.
+   *
+   * This allows:
+   *
+   * []
+   * ["Answer A"]
+   * ["Answer A", "Answer C"]
+   */
+  const [answers, setAnswers] = useState<string[][]>(() =>
+    Array.from(
+      { length: quizQuestions.length },
+      () => []
+    )
   );
 
   const [timeLeft, setTimeLeft] =
@@ -115,30 +166,83 @@ const Pmpbusiness: React.FC = () => {
 
   /*
   |--------------------------------------------------------------------------
+  | HELPER FUNCTIONS
+  |--------------------------------------------------------------------------
+  */
+
+  /*
+   * Converts the old answer format:
+   *
+   * "Answer A"
+   *
+   * into:
+   *
+   * ["Answer A"]
+   *
+   * while also supporting:
+   *
+   * ["Answer A", "Answer B"]
+   */
+
+  const normalizeAnswers = (
+    correctAnswer: string | string[]
+  ): string[] => {
+    if (Array.isArray(correctAnswer)) {
+      return [...correctAnswer];
+    }
+
+    return [correctAnswer];
+  };
+
+  /*
+   * Determines whether the user's answer is exactly
+   * equal to the correct answer.
+   *
+   * Order does NOT matter.
+   *
+   * ["A", "C"]
+   *
+   * is considered equal to:
+   *
+   * ["C", "A"]
+   */
+
+  const areAnswersCorrect = (
+    selectedAnswers: string[],
+    correctAnswer: string | string[]
+  ): boolean => {
+    const correctAnswers =
+      normalizeAnswers(correctAnswer);
+
+    if (
+      selectedAnswers.length !==
+      correctAnswers.length
+    ) {
+      return false;
+    }
+
+    const selectedSet =
+      new Set(selectedAnswers);
+
+    const correctSet =
+      new Set(correctAnswers);
+
+    if (
+      selectedSet.size !==
+      correctSet.size
+    ) {
+      return false;
+    }
+
+    return [...correctSet].every((answer) =>
+      selectedSet.has(answer)
+    );
+  };
+
+  /*
+  |--------------------------------------------------------------------------
   | VERIFY PROMO ACCESS
   |--------------------------------------------------------------------------
-  |
-  | Reads the promo access saved by Choose.tsx.
-  |
-  | Expected structure:
-  |
-  | {
-  |   "code": "PM01CERTIFIED",
-  |   "quizzes": [
-  |     "capm",
-  |     "scrum",
-  |     "new-pmp-people",
-  |     "new-pmp-process",
-  |     "new-pmp-business-environment"
-  |   ]
-  | }
-  |
-  | Notice that:
-  |
-  | "new-pmp-complete"
-  |
-  | is intentionally NOT included.
-  |
   */
 
   useEffect(() => {
@@ -158,14 +262,20 @@ const Pmpbusiness: React.FC = () => {
           JSON.parse(storedAccess);
 
         const validPromoCode =
-          parsedAccess?.code === PROMO_CODE;
+          parsedAccess?.code ===
+          PROMO_CODE;
 
         const hasQuizAccess =
-          Array.isArray(parsedAccess?.quizzes) &&
-          parsedAccess.quizzes.includes(QUIZ_ID);
+          Array.isArray(
+            parsedAccess?.quizzes
+          ) &&
+          parsedAccess.quizzes.includes(
+            QUIZ_ID
+          );
 
         setHasPromoAccess(
-          validPromoCode && hasQuizAccess
+          validPromoCode &&
+            hasQuizAccess
         );
       } catch (error) {
         console.error(
@@ -198,10 +308,20 @@ const Pmpbusiness: React.FC = () => {
     const correctAnswers =
       answers.reduce(
         (total, answer, index) => {
-          if (
-            answer ===
-            quizQuestions[index]?.correctAnswer
-          ) {
+          const question =
+            quizQuestions[index];
+
+          if (!question) {
+            return total;
+          }
+
+          const isCorrect =
+            areAnswersCorrect(
+              answer,
+              question.correctAnswer
+            );
+
+          if (isCorrect) {
             return total + 1;
           }
 
@@ -285,8 +405,8 @@ const Pmpbusiness: React.FC = () => {
   */
 
   const handleAnswerChange = (
-    index: number,
-    value: string
+    questionIndex: number,
+    option: string
   ) => {
     if (
       reviewMode ||
@@ -295,13 +415,74 @@ const Pmpbusiness: React.FC = () => {
       return;
     }
 
+    const question =
+      quizQuestions[questionIndex];
+
+    if (!question) {
+      return;
+    }
+
+    /*
+     * If answerType is omitted, default to "single".
+     */
+    const answerType =
+      question.answerType ??
+      "single";
+
     setAnswers(
       (previousAnswers) => {
-        const updatedAnswers = [
-          ...previousAnswers,
-        ];
+        const updatedAnswers =
+          [...previousAnswers];
 
-        updatedAnswers[index] = value;
+        const currentAnswers =
+          updatedAnswers[
+            questionIndex
+          ] ?? [];
+
+        /*
+        |--------------------------------------------------------------------------
+        | MULTIPLE ANSWER
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+          answerType ===
+          "multiple"
+        ) {
+          const alreadySelected =
+            currentAnswers.includes(
+              option
+            );
+
+          if (alreadySelected) {
+            updatedAnswers[
+              questionIndex
+            ] =
+              currentAnswers.filter(
+                (answer) =>
+                  answer !== option
+              );
+          } else {
+            updatedAnswers[
+              questionIndex
+            ] = [
+              ...currentAnswers,
+              option,
+            ];
+          }
+
+          return updatedAnswers;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | SINGLE ANSWER
+        |--------------------------------------------------------------------------
+        */
+
+        updatedAnswers[
+          questionIndex
+        ] = [option];
 
         return updatedAnswers;
       }
@@ -357,7 +538,13 @@ const Pmpbusiness: React.FC = () => {
     setCurrentQuestionIndex(0);
 
     setAnswers(
-      Array(quizQuestions.length).fill("")
+      Array.from(
+        {
+          length:
+            quizQuestions.length,
+        },
+        () => []
+      )
     );
 
     setTimeLeft(
@@ -396,7 +583,7 @@ const Pmpbusiness: React.FC = () => {
       () =>
         answers.filter(
           (answer) =>
-            answer.trim() !== ""
+            answer.length > 0
         ).length,
       [answers]
     );
@@ -431,7 +618,8 @@ const Pmpbusiness: React.FC = () => {
 
     const minutes =
       Math.floor(
-        (safeSeconds % 3600) / 60
+        (safeSeconds % 3600) /
+          60
       );
 
     const remainingSeconds =
@@ -439,11 +627,19 @@ const Pmpbusiness: React.FC = () => {
 
     return `${hours
       .toString()
-      .padStart(2, "0")}:${minutes
+      .padStart(
+        2,
+        "0"
+      )}:${minutes
       .toString()
-      .padStart(2, "0")}:${remainingSeconds
+      .padStart(
+        2,
+        "0"
+      )}:${remainingSeconds
       .toString()
-      .padStart(2, "0")}`;
+      .padStart(
+        2,
+        "0")}`;
   };
 
   /*
@@ -515,7 +711,8 @@ const Pmpbusiness: React.FC = () => {
               </div>
             </div>
           </div>
-        ) : quizQuestions.length === 0 ? (
+        ) : quizQuestions.length ===
+          0 ? (
           /*
           |--------------------------------------------------------------------------
           | EMPTY QUIZ
@@ -567,6 +764,7 @@ const Pmpbusiness: React.FC = () => {
 
                 <div className="relative px-5 py-6 sm:px-8 sm:py-8 lg:px-10">
                   <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+
                     <div className="max-w-3xl">
                       <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-red-700">
                         <BadgeCheck className="h-4 w-4" />
@@ -608,6 +806,7 @@ const Pmpbusiness: React.FC = () => {
                   {!reviewMode && (
                     <>
                       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+
                         <div className="rounded-2xl border border-gray-200 bg-[#fafafa] px-4 py-4">
                           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
                             Question
@@ -649,11 +848,14 @@ const Pmpbusiness: React.FC = () => {
                             {Math.round(progress)}%
                           </p>
                         </div>
+
                       </div>
 
                       <div className="mt-6">
                         <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
-                          <span>Progress</span>
+                          <span>
+                            Progress
+                          </span>
 
                           <span>
                             {Math.round(progress)}%
@@ -679,6 +881,7 @@ const Pmpbusiness: React.FC = () => {
               {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm">
                   <div className="relative w-full max-w-md rounded-[28px] bg-white p-6 shadow-2xl">
+
                     <button
                       onClick={() =>
                         setIsModalOpen(false)
@@ -719,15 +922,22 @@ const Pmpbusiness: React.FC = () => {
               {/* QUIZ / REVIEW */}
 
               <div className="mt-8 overflow-hidden rounded-[32px] border border-gray-200 bg-white shadow-xl">
+
                 {!reviewMode &&
                 currentQuestion ? (
+
                   <div className="p-5 sm:p-7 lg:p-8">
+
+                    {/* SCENARIO */}
+
                     <div className="rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
                       <span className="font-bold">
                         Scenario:
                       </span>{" "}
                       {currentQuestion.scenario}
                     </div>
+
+                    {/* QUESTION */}
 
                     <div className="mt-6">
                       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
@@ -740,16 +950,55 @@ const Pmpbusiness: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="mt-6 space-y-3">
+                    {/* IMAGE */}
+
+                    {currentQuestion.image && (
+                      <div className="mt-6 overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
+                        <img
+                          src={
+                            currentQuestion.image
+                          }
+                          alt={`Illustration for question ${
+                            currentQuestionIndex + 1
+                          }`}
+                          className="mx-auto max-h-[550px] w-full object-contain"
+                        />
+                      </div>
+                    )}
+
+                    {/* QUESTION TYPE */}
+
+                    <div className="mt-6">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-red-700">
+                        {currentQuestion.answerType ===
+                        "multiple"
+                          ? "Select all that apply"
+                          : "Select one answer"}
+                      </p>
+                    </div>
+
+                    {/* OPTIONS */}
+
+                    <div className="mt-3 space-y-3">
                       {currentQuestion.options.map(
                         (
                           option,
                           index
                         ) => {
-                          const isSelected =
+
+                          const selectedAnswers =
                             answers[
                               currentQuestionIndex
-                            ] === option;
+                            ] ?? [];
+
+                          const isSelected =
+                            selectedAnswers.includes(
+                              option
+                            );
+
+                          const isMultiple =
+                            currentQuestion.answerType ===
+                            "multiple";
 
                           return (
                             <label
@@ -761,7 +1010,11 @@ const Pmpbusiness: React.FC = () => {
                               }`}
                             >
                               <input
-                                type="radio"
+                                type={
+                                  isMultiple
+                                    ? "checkbox"
+                                    : "radio"
+                                }
                                 name={`question-${currentQuestionIndex}`}
                                 checked={
                                   isSelected
@@ -784,7 +1037,10 @@ const Pmpbusiness: React.FC = () => {
                       )}
                     </div>
 
+                    {/* NAVIGATION */}
+
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+
                       <button
                         onClick={
                           prevQuestion
@@ -820,11 +1076,20 @@ const Pmpbusiness: React.FC = () => {
                           <ArrowRight className="h-4 w-4" />
                         </button>
                       )}
+
                     </div>
                   </div>
+
                 ) : (
+
+                  /* REVIEW */
+
                   <div className="p-5 sm:p-7 lg:p-8">
+
+                    {/* SCORE */}
+
                     <div className="rounded-[28px] border border-gray-200 bg-[#fafafa] p-6 text-center shadow-sm">
+
                       <div
                         className={`mx-auto flex h-16 w-16 items-center justify-center rounded-2xl ${
                           score !== null &&
@@ -854,6 +1119,7 @@ const Pmpbusiness: React.FC = () => {
                       </p>
 
                       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+
                         <button
                           onClick={
                             restartQuiz
@@ -875,28 +1141,45 @@ const Pmpbusiness: React.FC = () => {
                           <Home className="h-4 w-4" />
                           Quiz Library
                         </button>
+
                       </div>
                     </div>
 
+                    {/* ANSWER REVIEW */}
+
                     <div className="mt-8 space-y-6">
+
                       {quizQuestions.map(
                         (
                           question,
                           index
                         ) => {
+
+                          const selectedAnswers =
+                            answers[index] ??
+                            [];
+
                           const isCorrect =
-                            answers[
-                              index
-                            ] ===
-                            question.correctAnswer;
+                            areAnswersCorrect(
+                              selectedAnswers,
+                              question.correctAnswer
+                            );
+
+                          const correctAnswers =
+                            normalizeAnswers(
+                              question.correctAnswer
+                            );
 
                           return (
                             <div
                               key={index}
                               className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm"
                             >
+
                               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+
                                 <div>
+
                                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
                                     Question{" "}
                                     {index + 1}
@@ -907,6 +1190,7 @@ const Pmpbusiness: React.FC = () => {
                                       question.question
                                     }
                                   </p>
+
                                 </div>
 
                                 <span
@@ -920,41 +1204,100 @@ const Pmpbusiness: React.FC = () => {
                                     ? "Correct"
                                     : "Incorrect"}
                                 </span>
+
                               </div>
 
+                              {/* REVIEW IMAGE */}
+
+                              {question.image && (
+                                <div className="mt-4 overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
+                                  <img
+                                    src={
+                                      question.image
+                                    }
+                                    alt={`Illustration for question ${
+                                      index + 1
+                                    }`}
+                                    className="mx-auto max-h-[400px] w-full object-contain"
+                                  />
+                                </div>
+                              )}
+
                               <div className="mt-4 grid gap-3">
+
+                                {/* YOUR ANSWER */}
+
                                 <div className="rounded-2xl border border-gray-200 bg-[#fafafa] px-4 py-3">
+
                                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
                                     Your answer
                                   </p>
 
-                                  <p
-                                    className={`mt-1 text-sm font-medium ${
+                                  <div
+                                    className={`mt-2 text-sm font-medium ${
                                       isCorrect
                                         ? "text-green-700"
                                         : "text-red-700"
                                     }`}
                                   >
-                                    {answers[
-                                      index
-                                    ] ||
-                                      "No answer"}
-                                  </p>
+                                    {selectedAnswers.length >
+                                    0 ? (
+                                      <ul className="space-y-1">
+                                        {selectedAnswers.map(
+                                          (
+                                            answer,
+                                            answerIndex
+                                          ) => (
+                                            <li
+                                              key={
+                                                answerIndex
+                                              }
+                                            >
+                                              {answer}
+                                            </li>
+                                          )
+                                        )}
+                                      </ul>
+                                    ) : (
+                                      "No answer"
+                                    )}
+                                  </div>
+
                                 </div>
 
+                                {/* CORRECT ANSWER */}
+
                                 <div className="rounded-2xl border border-green-200 bg-green-50 px-4 py-3">
+
                                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-700">
                                     Correct answer
                                   </p>
 
-                                  <p className="mt-1 text-sm font-medium text-green-800">
-                                    {
-                                      question.correctAnswer
-                                    }
-                                  </p>
+                                  <div className="mt-2 text-sm font-medium text-green-800">
+                                    <ul className="space-y-1">
+                                      {correctAnswers.map(
+                                        (
+                                          answer,
+                                          answerIndex
+                                        ) => (
+                                          <li
+                                            key={
+                                              answerIndex
+                                            }
+                                          >
+                                            {answer}
+                                          </li>
+                                        )
+                                      )}
+                                    </ul>
+                                  </div>
+
                                 </div>
 
+                                {/* EXPLANATION */}
+
                                 <div className="rounded-2xl border border-gray-200 bg-white px-4 py-3">
+
                                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
                                     Explanation
                                   </p>
@@ -964,12 +1307,15 @@ const Pmpbusiness: React.FC = () => {
                                       question.explanation
                                     }
                                   </p>
+
                                 </div>
+
                               </div>
                             </div>
                           );
                         }
                       )}
+
                     </div>
                   </div>
                 )}
@@ -982,8 +1328,11 @@ const Pmpbusiness: React.FC = () => {
       <SignedOut>
         <div className="min-h-screen bg-[#f8f7f5] px-4 py-8 sm:px-6">
           <div className="mx-auto flex min-h-screen max-w-5xl items-center justify-center">
+
             <div className="w-full max-w-md rounded-[32px] border border-gray-200 bg-white p-6 shadow-xl sm:p-8">
+
               <div className="mb-6 text-center">
+
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-700">
                   <BadgeCheck className="h-7 w-7" />
                 </div>
@@ -996,12 +1345,14 @@ const Pmpbusiness: React.FC = () => {
                   Please sign in to continue to your
                   PMP practice quiz.
                 </p>
+
               </div>
 
               <SignIn
                 path="/new-pmp-business"
                 routing="path"
               />
+
             </div>
           </div>
         </div>
