@@ -33,6 +33,7 @@ const PROMO_QUIZ_IDS = [
   "new-pmp-people",
   "new-pmp-process",
   "new-pmp-business-environment",
+  "new-pmp-complete",
 ];
 
 const quizzes: QuizChoice[] = [
