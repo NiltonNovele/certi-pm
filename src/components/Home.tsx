@@ -177,13 +177,11 @@ const Home = () => {
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-[#7a0b0b] sm:text-5xl lg:text-6xl xl:text-7xl">
-              Project Management Training & Certification for Real-World Impact
+              Project Management Consulting for Real-World Impact
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-gray-700 sm:text-lg lg:text-xl">
-              Empower yourself in project management, optimise processes, and prepare
-              for internationally recognised certifications with practical,
-              structured, PMI®-aligned learning.
+              We help organisations deliver complex projects with confidence — strengthening capability, optimising processes, and building certified, PMI®️-aligned project leadership across your teams.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-gray-700">
@@ -268,11 +266,7 @@ const Home = () => {
                   Building Project Leaders for a Global Standard
                 </h2>
                 <p className="mt-5 text-base leading-8 text-gray-700">
-                  <strong>Certi PM</strong> is a specialised project management
-                  training and certification platform operating under{" "}
-                  <strong>Project Direct Lda.</strong> We focus on empowering
-                  professionals and organisations with practical skills, structured
-                  methodologies, and internationally recognised standards.
+                  <strong>Project Direct Lda</strong> is a specialised project management consulting firm helping professionals and organisations deliver complex projects with confidence. We combine practical expertise, structured methodologies, and internationally recognised standards to strengthen project delivery capability across every engagement.
                 </p>
                 <p className="mt-4 text-base leading-8 text-gray-700">
                   We are proud to be the <strong>first and only PMI® Authorized
